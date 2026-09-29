@@ -18,3 +18,4 @@
 - Use IBM Plex Sans for both headings and body text; its understated institutional tone keeps the established page layout intact.
 - Keep a persistent mobile call action and use a Google Maps directions URL with the office as the destination so contact remains usable from anywhere on the page.
 - Instagram is green_renewals; Facebook is the business page at facebook.com/profile.php?id=61594797155664 (provided by the business, so never fall back to a page search).
+- Use a reusable intersection-based, reduced-motion-aware reveal for the three opening benefits and service cards; it preserves the restrained appearance while animating only as content enters view.

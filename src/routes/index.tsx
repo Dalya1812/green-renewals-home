@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Check, ChevronRight, Facebook, House, Instagram, MapPin, Menu, Phone, Play, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import homeImage from "@/assets/green-renewals-home.jpg";
@@ -10,6 +10,7 @@ import insulationImage from "@/assets/attic-photo.png.asset.json";
 import logo from "@/assets/logo.png.asset.json";
 import video from "@/assets/green-renewals-video.mp4.asset.json";
 import teamPhoto from "@/assets/team-photo.png.asset.json";
+import qualificationsImage from "@/assets/program-qualifications.png.asset.json";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
@@ -33,11 +34,31 @@ const instagramUrl = "https://www.instagram.com/green_renewals/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61594797155664";
 
 const services = [
-  { number: "01", title: "Impact Windows & Doors", image: windowsImage.url, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
-  { number: "02", title: "Roofing", image: roofingImage.url, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
-  { number: "03", title: "HVAC Systems", image: hvacImage, description: "Keep your home comfortable with efficient heating and cooling solutions tailored to your needs." },
-  { number: "04", title: "Wall & Attic Insulation", image: insulationImage.url, description: "Improve indoor comfort and energy efficiency with insulation for your walls and attic." },
+  { title: "Impact Windows & Doors", image: windowsImage.url, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
+  { title: "Roofing", image: roofingImage.url, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
+  { title: "HVAC Systems", image: hvacImage, description: "Keep your home comfortable with efficient heating and cooling solutions tailored to your needs." },
+  { title: "Wall & Attic Insulation", image: insulationImage.url, description: "Improve indoor comfort and energy efficiency with insulation for your walls and attic." },
 ];
+
+function ScrollReveal({ children, index = 0, className = "" }: { children: ReactNode; index?: number; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    element.classList.add('scroll-reveal');
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry?.isIntersecting) {
+        element.classList.add('is-visible');
+        observer.disconnect();
+      }
+    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+    observer.observe(element);
+    return () => observer.disconnect();
+  }, []);
+
+  return <div ref={ref} className={`reveal-delay-${index} ${className}`}>{children}</div>;
+}
 
 function Brand({ inverse = false }: { inverse?: boolean }) {
   return (
@@ -54,14 +75,14 @@ function VideoCard() {
     <div className="w-full max-w-md">
       <div className="relative aspect-video overflow-hidden rounded-sm border border-border bg-forest shadow-sm">
         {playing ? (
-          <video className="h-full w-full bg-forest" src={video.url} poster={homeImage} controls autoPlay playsInline preload="metadata" />
+          <video className="h-full w-full bg-forest" src={video.url} poster={qualificationsImage.url} controls autoPlay playsInline preload="metadata" />
         ) : (
           <>
-            <img src={homeImage} alt="" width={1024} height={768} loading="lazy" className="h-full w-full object-cover" />
-            <div className="absolute inset-0 bg-forest/40" aria-hidden="true" />
+            <img src={qualificationsImage.url} alt="Green Renewals program qualifications — check now if you qualify" width={1920} height={1080} loading="lazy" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-forest/10" aria-hidden="true" />
             <Button type="button" variant="ghost" onClick={() => setPlaying(true)} aria-label="Play the Green Renewals video" className="group absolute inset-0 flex h-full w-full flex-col items-center justify-center gap-3 rounded-none hover:bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm">
               <span className="flex size-14 items-center justify-center rounded-full bg-background/95 text-forest shadow-lg transition-transform duration-200 group-hover:scale-110"><Play size={22} className="ml-0.5" fill="currentColor" /></span>
-              <span className="text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground">Watch the video</span>
+              <span className="rounded-sm bg-forest/85 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground">Watch the video</span>
             </Button>
           </>
         )}
@@ -200,9 +221,9 @@ function Index() {
 
         <div className="border-b border-border bg-mist">
           <div className="mx-auto grid max-w-7xl gap-0 px-5 sm:grid-cols-3 sm:px-8 lg:px-10">
-            <div className="flex items-center gap-3 py-5 sm:pr-5"><ShieldCheck className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Quality Products & Workmanship</span></div>
-            <div className="flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:px-6"><Check className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Clear, Reliable Service</span></div>
-            <div className="flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:pl-6"><House className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Solutions for Your Home</span></div>
+            <ScrollReveal index={0} className="flex items-center gap-3 py-5 sm:pr-5"><ShieldCheck className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Quality Product and Workmanship</span></ScrollReveal>
+            <ScrollReveal index={1} className="flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:px-6"><Check className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Clear, Reliable Service</span></ScrollReveal>
+            <ScrollReveal index={2} className="flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:pl-6"><House className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Solutions for Your Home</span></ScrollReveal>
           </div>
         </div>
 
@@ -214,16 +235,17 @@ function Index() {
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">Complete solutions to help you protect, improve, and enjoy your home for years to come.</p>
             </div>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {services.map((service) => (
-                <article key={service.number} className="group overflow-hidden rounded-sm border border-border bg-card transition-shadow hover:shadow-md">
+              {services.map((service, index) => (
+                <ScrollReveal key={service.title} index={index} className="h-full">
+                <article className="group h-full overflow-hidden rounded-sm border border-border bg-card transition-shadow hover:shadow-md">
                   <div className="aspect-[4/3] overflow-hidden"><img src={service.image} alt={service.title} width={1024} height={768} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.035]" /></div>
                   <div className="p-5">
-                    <span className="text-xs font-bold text-primary">{service.number} / SERVICE</span>
-                    <h3 className="mt-3 min-h-[3.5rem] font-display text-lg font-bold leading-snug text-forest">{service.title}</h3>
+                    <h3 className="min-h-[3.5rem] font-display text-lg font-bold leading-snug text-forest">{service.title}</h3>
                     <p className="mt-2 min-h-[6rem] text-sm leading-relaxed text-muted-foreground">{service.description}</p>
                     <a href={`tel:${phone}`} className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-forest">Ask about this service <ChevronRight size={16} /></a>
                   </div>
                 </article>
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -233,7 +255,7 @@ function Index() {
           <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-10">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">About Green Renewals</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">A better home starts with a team you can trust.</h2>
+              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Behind every successful project is a team committed to qualified professionalism and attention to detail</h2>
               <div className="mt-7 h-1 w-14 bg-primary" />
               <img src={teamPhoto.url} alt="The Green Renewals team outside our office" width={1920} height={1080} loading="lazy" className="mt-8 w-full rounded-sm border border-border object-cover shadow-sm" />
             </div>
@@ -249,9 +271,8 @@ function Index() {
         <section className="py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.85fr] lg:gap-16 lg:px-10">
             <div>
-              <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">See It For Yourself</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">A closer look at Green Renewals.</h2>
-              <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">Watch the video to see how we help South Florida homeowners upgrade and protect their homes.</p>
+              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Program Qualifications</h2>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">Check if you meet the criteria for our loan program today and take a step towards sustainable and durable property</p>
               <Button asChild size="lg" className="mt-8 h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Call (786) 606-4596 <ArrowRight /></a></Button>
             </div>
             <div className="flex justify-start lg:justify-end"><VideoCard /></div>
