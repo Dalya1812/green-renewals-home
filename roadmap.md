@@ -8,3 +8,6 @@
 - [x] Hide the “Edit with Lovable” badge on published pages.
 - [x] Use the supplied roof photo for Roofing, keep calling accessible on mobile, link Instagram and Facebook, and fix directions.
 - [x] Replace the Facebook search fallback with the business's exact page URL.
+- [x] Add the supplied team photo to the About section.
+- [x] Add service areas: Miami-Dade, Broward, West Palm Beach (top bar, contact, metadata).
+- [x] Add a "Check if you qualify" lead form in Contact; submissions saved to the leads table.
