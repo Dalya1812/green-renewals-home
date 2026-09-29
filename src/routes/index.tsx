@@ -207,11 +207,11 @@ function Index() {
           <div className="hero-overlay absolute inset-0" aria-hidden="true" />
           <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
             <div className="max-w-[620px]">
-              <p className="mb-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground/90"><span className="h-px w-9 bg-warm" /> South Florida Home Improvement</p>
-              <h1 id="hero-title" className="font-display text-[39px] font-bold leading-[1.15] sm:text-[52px] lg:text-[58px]">Green Renewals</h1>
-              <p className="mt-4 font-display text-xl font-semibold leading-snug sm:text-[27px]">Upgrade Your Home.<br />Protect Your Investment.</p>
-              <p className="mt-5 max-w-[500px] text-base leading-relaxed text-forest-foreground/90 sm:text-lg">Quality home improvement solutions for the comfort, protection, and value of your South Florida home.</p>
-              <div className="mt-8 flex flex-wrap gap-3">
+              <p className="hero-enter mb-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground/90"><span className="h-px w-9 bg-warm" /> South Florida Home Improvement</p>
+              <h1 id="hero-title" className="hero-enter hero-d1 font-display text-[39px] font-bold leading-[1.15] sm:text-[52px] lg:text-[58px]">Green Renewals</h1>
+              <p className="hero-enter hero-d2 mt-4 font-display text-xl font-semibold leading-snug sm:text-[27px]">Upgrade Your Home.<br />Protect Your Investment.</p>
+              <p className="hero-enter hero-d3 mt-5 max-w-[500px] text-base leading-relaxed text-forest-foreground/90 sm:text-lg">Quality home improvement solutions for the comfort, protection, and value of your South Florida home.</p>
+              <div className="hero-enter hero-d4 mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Speak With Our Team <ArrowRight /></a></Button>
                 <Button asChild variant="heroOutline" size="lg" className="h-12 rounded-sm px-6 font-bold"><a href="#services">Explore Our Services</a></Button>
               </div>
@@ -229,11 +229,11 @@ function Index() {
 
         <section id="services" className="scroll-mt-24 py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-            <div className="mb-10 max-w-2xl">
+            <ScrollReveal className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">What We Do</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Home improvements that make a difference.</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">Complete solutions to help you protect, improve, and enjoy your home for years to come.</p>
-            </div>
+            </ScrollReveal>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {services.map((service, index) => (
                 <ScrollReveal key={service.title} index={index} className="h-full">
@@ -242,7 +242,7 @@ function Index() {
                   <div className="p-5">
                     <h3 className="min-h-[3.5rem] font-display text-lg font-bold leading-snug text-forest">{service.title}</h3>
                     <p className="mt-2 min-h-[6rem] text-sm leading-relaxed text-muted-foreground">{service.description}</p>
-                    <a href={`tel:${phone}`} className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-forest">Ask about this service <ChevronRight size={16} /></a>
+                    <a href={`tel:${phone}`} className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-forest">Ask about this service <ChevronRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" /></a>
                   </div>
                 </article>
                 </ScrollReveal>
@@ -253,57 +253,57 @@ function Index() {
 
         <section id="about" className="scroll-mt-24 border-y border-border bg-mist py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-10">
-            <div>
+            <ScrollReveal>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">About Green Renewals</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Behind every successful project is a team committed to qualified professionalism and attention to detail</h2>
-              <div className="mt-7 h-1 w-14 bg-primary" />
+              <div className="rule-grow mt-7 h-1 w-14 bg-primary" />
               <img src={teamPhoto.url} alt="The Green Renewals team outside our office" width={1920} height={1080} loading="lazy" className="mt-8 w-full rounded-sm border border-border object-cover shadow-sm" />
-            </div>
-            <div className="space-y-5 text-base leading-[1.8] text-foreground/85">
+            </ScrollReveal>
+            <ScrollReveal index={1} className="space-y-5 text-base leading-[1.8] text-foreground/85">
               <p>Green Renewals is a South Florida home improvement company dedicated to helping homeowners upgrade, protect, and improve their homes with high-quality products, professional service, and reliable workmanship.</p>
               <p>We specialize in roofing, impact windows and doors, HVAC systems, and insulation, providing homeowners with complete solutions designed to improve comfort, energy efficiency, protection, and the overall value of their property.</p>
               <p>From the initial consultation through project completion, our team is committed to making the process simple, transparent, and stress-free. We work with trusted professionals and quality materials while helping each homeowner understand the options available for their specific property and project.</p>
               <p>At Green Renewals, our goal is simple: professional service, quality work, clear communication, and results homeowners can feel confident about.</p>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
 
         <section className="py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.85fr] lg:gap-16 lg:px-10">
-            <div>
+            <ScrollReveal>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Program Qualifications</h2>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">Find out today whether your home meets the requirements for our financing program, and take the first step toward a stronger, longer-lasting, more energy-efficient property.</p>
               <Button asChild size="lg" className="mt-8 h-auto min-h-12 whitespace-normal rounded-sm px-6 py-3 text-left font-bold"><a href="#contact">Click Here to Check If You Qualify <ArrowRight /></a></Button>
-            </div>
-            <div className="flex justify-start lg:justify-end"><VideoCard /></div>
+            </ScrollReveal>
+            <ScrollReveal index={1} className="flex justify-start lg:justify-end"><VideoCard /></ScrollReveal>
           </div>
         </section>
 
         <section id="financing" className="scroll-mt-24 bg-forest py-16 text-forest-foreground sm:py-20">
           <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-10">
-            <div className="max-w-2xl">
+            <ScrollReveal className="max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-warm">Flexible Options</p>
               <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl">Financing for your next home improvement.</h2>
               <p className="mt-4 text-base leading-relaxed text-forest-foreground/85">Flexible financing options are available for qualified homeowners, making it easier to complete important improvements without the burden of a large upfront investment.</p>
-            </div>
-            <Button asChild variant="inverse" size="lg" className="h-12 shrink-0 self-start rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Discuss Your Options <ArrowRight /></a></Button>
+            </ScrollReveal>
+            <ScrollReveal index={1}><Button asChild variant="inverse" size="lg" className="h-12 shrink-0 self-start rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Discuss Your Options <ArrowRight /></a></Button></ScrollReveal>
           </div>
         </section>
 
         <section id="contact" className="scroll-mt-24 py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-10">
-            <div>
+            <ScrollReveal>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">Get in Touch</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Let’s talk about your home.</h2>
               <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">Whether you’re planning an upgrade or exploring your options, our team is ready to help you take the next step.</p>
               <QualificationForm />
-            </div>
-            <div className="border-t border-border lg:border-l lg:border-t-0 lg:pl-12">
+            </ScrollReveal>
+            <ScrollReveal index={1} className="border-t border-border lg:border-l lg:border-t-0 lg:pl-12">
               <div className="flex gap-5 border-b border-border py-7"><Phone className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Phone</h3><a href={`tel:${phone}`} className="mt-1 inline-block text-lg text-foreground hover:text-primary">(786) 606-4596</a></div></div>
               <div className="flex gap-5 border-b border-border py-7"><MapPin className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Office Address</h3><p className="mt-1 text-base text-foreground">{address}</p><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-forest">Get directions <ArrowRight size={15} /></a></div></div>
               <div className="flex gap-5 border-b border-border py-7"><MapPin className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Service Areas</h3><p className="mt-1 text-base text-foreground">Miami-Dade, Broward & West Palm Beach counties</p></div></div>
               <div className="flex items-center gap-4 py-7"><span className="text-sm font-bold text-forest">Follow us</span><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Instagram"><a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Instagram"><Instagram /></a></Button><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Facebook"><a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Facebook"><Facebook /></a></Button></div>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
       </main>

@@ -98,6 +98,14 @@
   .reveal-delay-1 { transition-delay: 180ms; }
   .reveal-delay-2 { transition-delay: 360ms; }
   .reveal-delay-3 { transition-delay: 540ms; }
+  .hero-enter { animation: hero-rise 700ms ease-out both; }
+  .hero-d1 { animation-delay: 130ms; }
+  .hero-d2 { animation-delay: 260ms; }
+  .hero-d3 { animation-delay: 390ms; }
+  .hero-d4 { animation-delay: 520ms; }
+  @keyframes hero-rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+  .scroll-reveal .rule-grow { transform: scaleX(0); transform-origin: left; transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1) 250ms; }
+  .scroll-reveal.is-visible .rule-grow { transform: scaleX(1); }
 }
 
 .scroll-reveal { opacity: 0; transform: translateY(56px); transition: opacity 800ms ease, transform 800ms cubic-bezier(0.2, 0.7, 0.2, 1); }
