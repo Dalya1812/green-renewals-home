@@ -28,7 +28,7 @@ const phone = "+17866064596";
 const address = "9000 Sheridan St, Suite 104, Pembroke Pines, FL 33024";
 const mapUrl = "https://www.google.com/maps/dir/?api=1&destination=9000%20Sheridan%20St%2C%20Suite%20104%2C%20Pembroke%20Pines%2C%20FL%2033024";
 const instagramUrl = "https://www.instagram.com/green_renewals/";
-const facebookUrl = "https://www.facebook.com/search/pages/?q=Green%20Renewals";
+const facebookUrl = "https://www.facebook.com/profile.php?id=61594797155664";
 
 const services = [
   { number: "01", title: "Impact Windows & Doors", image: windowsImage.url, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
@@ -200,7 +200,7 @@ function Index() {
             <div className="border-t border-border lg:border-l lg:border-t-0 lg:pl-12">
               <div className="flex gap-5 border-b border-border py-7"><Phone className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Phone</h3><a href={`tel:${phone}`} className="mt-1 inline-block text-lg text-foreground hover:text-primary">(786) 606-4596</a></div></div>
               <div className="flex gap-5 border-b border-border py-7"><MapPin className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Office Address</h3><p className="mt-1 text-base text-foreground">{address}</p><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-forest">Get directions <ArrowRight size={15} /></a></div></div>
-              <div className="flex items-center gap-4 py-7"><span className="text-sm font-bold text-forest">Follow us</span><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Instagram"><a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Instagram"><Instagram /></a></Button><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Facebook"><a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Green Renewals on Facebook"><Facebook /></a></Button></div>
+              <div className="flex items-center gap-4 py-7"><span className="text-sm font-bold text-forest">Follow us</span><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Instagram"><a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Instagram"><Instagram /></a></Button><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Facebook"><a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Facebook"><Facebook /></a></Button></div>
             </div>
           </div>
         </section>
