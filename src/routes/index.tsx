@@ -71,6 +71,94 @@ function VideoCard() {
   );
 }
 
+function QualificationForm() {
+  const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
+  const [error, setError] = useState("");
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get("name") ?? "").trim();
+    const phone = String(data.get("phone") ?? "").trim();
+    if (name.length < 2) { setError("Please enter your name."); return; }
+    if (phone.replace(/\D/g, "").length < 10) { setError("Please enter a valid phone number."); return; }
+    setError("");
+    setStatus("submitting");
+    const { error: insertError } = await supabase.from("leads").insert({
+      name,
+      phone,
+      email: String(data.get("email") ?? "").trim() || null,
+      service: String(data.get("service") ?? "General inquiry"),
+      county: String(data.get("county") ?? "") || null,
+      message: String(data.get("message") ?? "").trim() || null,
+    });
+    if (insertError) {
+      setStatus("idle");
+      setError("Something went wrong. Please call us instead at (786) 606-4596.");
+      return;
+    }
+    form.reset();
+    setStatus("done");
+  }
+
+  const fieldClass = "w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40";
+
+  return (
+    <div id="qualify" className="mt-8 max-w-lg scroll-mt-24 rounded-sm border border-border bg-card p-6 shadow-sm">
+      {status === "done" ? (
+        <div className="flex flex-col items-start gap-3">
+          <Check className="size-8 text-primary" strokeWidth={2} />
+          <h3 className="font-display text-lg font-bold text-forest">Thank you — we received your details.</h3>
+          <p className="text-sm leading-relaxed text-muted-foreground">A member of our team will contact you shortly. If you prefer, you can also call us now at <a href={`tel:${phone}`} className="font-bold text-primary hover:text-forest">(786) 606-4596</a>.</p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} noValidate>
+          <h3 className="font-display text-lg font-bold text-forest">Check if you qualify</h3>
+          <p className="mt-1 text-sm text-muted-foreground">Leave your details and we will call you back to review your options.</p>
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <label className="flex flex-col gap-1.5 text-sm font-semibold text-foreground">
+              Full name *
+              <input name="name" type="text" required maxLength={100} placeholder="Your name" className={fieldClass} />
+            </label>
+            <label className="flex flex-col gap-1.5 text-sm font-semibold text-foreground">
+              Phone *
+              <input name="phone" type="tel" required maxLength={20} placeholder="(786) 000-0000" className={fieldClass} />
+            </label>
+            <label className="flex flex-col gap-1.5 text-sm font-semibold text-foreground">
+              Email
+              <input name="email" type="email" maxLength={255} placeholder="Optional" className={fieldClass} />
+            </label>
+            <label className="flex flex-col gap-1.5 text-sm font-semibold text-foreground">
+              Service of interest
+              <select name="service" className={fieldClass} defaultValue="General inquiry">
+                {services.map((service) => <option key={service.title} value={service.title}>{service.title}</option>)}
+                <option value="General inquiry">General inquiry</option>
+              </select>
+            </label>
+            <label className="flex flex-col gap-1.5 text-sm font-semibold text-foreground sm:col-span-2">
+              County
+              <select name="county" className={fieldClass} defaultValue="Miami-Dade">
+                <option value="Miami-Dade">Miami-Dade</option>
+                <option value="Broward">Broward</option>
+                <option value="Palm Beach">West Palm Beach</option>
+              </select>
+            </label>
+            <label className="flex flex-col gap-1.5 text-sm font-semibold text-foreground sm:col-span-2">
+              Anything we should know?
+              <textarea name="message" rows={3} maxLength={1000} placeholder="Optional" className={fieldClass} />
+            </label>
+          </div>
+          {error && <p className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
+          <Button type="submit" size="lg" disabled={status === "submitting"} className="mt-5 h-12 w-full rounded-sm px-6 font-bold sm:w-auto">
+            {status === "submitting" ? "Sending…" : "Send My Details"} <ArrowRight />
+          </Button>
+        </form>
+      )}
+    </div>
+  );
+}
+
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
