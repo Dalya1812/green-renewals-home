@@ -8,7 +8,7 @@ import roofingImage from "@/assets/roofing.jpg";
 import hvacImage from "@/assets/hvac.jpg";
 import insulationImage from "@/assets/attic-photo.png.asset.json";
 import logo from "@/assets/logo.png.asset.json";
-import heroVideo from "@/assets/hero-video.mp4.asset.json";
+import video from "@/assets/green-renewals-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,7 +50,7 @@ function VideoCard() {
     <div className="w-full max-w-md">
       <div className="relative aspect-video overflow-hidden rounded-sm border border-border bg-forest shadow-sm">
         {playing ? (
-          <video className="h-full w-full bg-forest" src={heroVideo.url} poster={homeImage} controls autoPlay playsInline preload="metadata" />
+          <video className="h-full w-full bg-forest" src={video.url} poster={homeImage} controls autoPlay playsInline preload="metadata" />
         ) : (
           <>
             <img src={homeImage} alt="" width={1024} height={768} loading="lazy" className="h-full w-full object-cover" />
