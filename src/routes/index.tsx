@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Check, ChevronRight, House, MapPin, Menu, Phone, Play, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, Facebook, House, Instagram, MapPin, Menu, Phone, Play, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import homeImage from "@/assets/green-renewals-home.jpg";
 import windowsImage from "@/assets/windows-photo.png.asset.json";
-import roofingImage from "@/assets/roofing.jpg";
+import roofingImage from "@/assets/green-renewals-roof.png.asset.json";
 import hvacImage from "@/assets/hvac.jpg";
 import insulationImage from "@/assets/attic-photo.png.asset.json";
 import logo from "@/assets/logo.png.asset.json";
@@ -26,11 +26,13 @@ export const Route = createFileRoute("/")({
 
 const phone = "+17866064596";
 const address = "9000 Sheridan St, Suite 104, Pembroke Pines, FL 33024";
-const mapUrl = "https://www.google.com/maps/search/?api=1&query=9000+Sheridan+St+Suite+104+Pembroke+Pines+FL+33024";
+const mapUrl = "https://www.google.com/maps/dir/?api=1&destination=9000%20Sheridan%20St%2C%20Suite%20104%2C%20Pembroke%20Pines%2C%20FL%2033024";
+const instagramUrl = "https://www.instagram.com/green_renewals/";
+const facebookUrl = "https://www.facebook.com/search/pages/?q=Green%20Renewals";
 
 const services = [
   { number: "01", title: "Impact Windows & Doors", image: windowsImage.url, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
-  { number: "02", title: "Roofing", image: roofingImage, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
+  { number: "02", title: "Roofing", image: roofingImage.url, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
   { number: "03", title: "HVAC Systems", image: hvacImage, description: "Keep your home comfortable with efficient heating and cooling solutions tailored to your needs." },
   { number: "04", title: "Wall & Attic Insulation", image: insulationImage.url, description: "Improve indoor comfort and energy efficiency with insulation for your walls and attic." },
 ];
@@ -55,10 +57,10 @@ function VideoCard() {
           <>
             <img src={homeImage} alt="" width={1024} height={768} loading="lazy" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-forest/40" aria-hidden="true" />
-            <button type="button" onClick={() => setPlaying(true)} aria-label="Play the Green Renewals video" className="group absolute inset-0 flex flex-col items-center justify-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm">
+            <Button type="button" variant="ghost" onClick={() => setPlaying(true)} aria-label="Play the Green Renewals video" className="group absolute inset-0 flex h-full w-full flex-col items-center justify-center gap-3 rounded-none hover:bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm">
               <span className="flex size-14 items-center justify-center rounded-full bg-background/95 text-forest shadow-lg transition-transform duration-200 group-hover:scale-110"><Play size={22} className="ml-0.5" fill="currentColor" /></span>
               <span className="text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground">Watch the video</span>
-            </button>
+            </Button>
           </>
         )}
       </div>
@@ -72,7 +74,7 @@ function Index() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div id="top" className="min-h-screen bg-background">
+    <div id="top" className="min-h-screen bg-background pb-16 lg:pb-0">
       <div className="bg-forest text-forest-foreground">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 text-xs font-medium sm:px-8 lg:px-10">
           <span>Serving homeowners across South Florida</span>
@@ -80,7 +82,7 @@ function Index() {
         </div>
       </div>
 
-      <header className="relative z-20 border-b border-border bg-background">
+      <header className="sticky top-0 z-20 border-b border-border bg-background">
         <div className="mx-auto flex h-[78px] max-w-7xl items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
           <Brand />
           <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
@@ -125,7 +127,7 @@ function Index() {
           </div>
         </div>
 
-        <section id="services" className="scroll-mt-8 py-20 sm:py-24">
+        <section id="services" className="scroll-mt-24 py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <div className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">What We Do</p>
@@ -148,7 +150,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="about" className="scroll-mt-8 border-y border-border bg-mist py-20 sm:py-24">
+        <section id="about" className="scroll-mt-24 border-y border-border bg-mist py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-10">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">About Green Renewals</p>
@@ -176,7 +178,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="financing" className="scroll-mt-8 bg-forest py-16 text-forest-foreground sm:py-20">
+        <section id="financing" className="scroll-mt-24 bg-forest py-16 text-forest-foreground sm:py-20">
           <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-10">
             <div className="max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-warm">Flexible Options</p>
@@ -187,7 +189,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="contact" className="scroll-mt-8 py-20 sm:py-24">
+        <section id="contact" className="scroll-mt-24 py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-10">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">Get in Touch</p>
@@ -197,7 +199,8 @@ function Index() {
             </div>
             <div className="border-t border-border lg:border-l lg:border-t-0 lg:pl-12">
               <div className="flex gap-5 border-b border-border py-7"><Phone className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Phone</h3><a href={`tel:${phone}`} className="mt-1 inline-block text-lg text-foreground hover:text-primary">(786) 606-4596</a></div></div>
-              <div className="flex gap-5 py-7"><MapPin className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Office Address</h3><p className="mt-1 text-base text-foreground">{address}</p><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-forest">Get directions <ArrowRight size={15} /></a></div></div>
+              <div className="flex gap-5 border-b border-border py-7"><MapPin className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Office Address</h3><p className="mt-1 text-base text-foreground">{address}</p><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-forest">Get directions <ArrowRight size={15} /></a></div></div>
+              <div className="flex items-center gap-4 py-7"><span className="text-sm font-bold text-forest">Follow us</span><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Instagram"><a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Instagram"><Instagram /></a></Button><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Facebook"><a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Green Renewals on Facebook"><Facebook /></a></Button></div>
             </div>
           </div>
         </section>
@@ -207,10 +210,13 @@ function Index() {
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3 sm:px-8 lg:px-10">
           <div><Brand inverse /><p className="mt-5 max-w-xs text-sm leading-relaxed text-forest-foreground/75">Upgrade Your Home. Protect Your Investment.</p></div>
           <div><h2 className="font-display text-sm font-bold uppercase">Quick Links</h2><div className="mt-5 flex flex-col gap-3 text-sm text-forest-foreground/75"><a href="#services" className="hover:text-forest-foreground">Our Services</a><a href="#about" className="hover:text-forest-foreground">About Us</a><a href="#financing" className="hover:text-forest-foreground">Financing</a><a href="#contact" className="hover:text-forest-foreground">Contact</a></div></div>
-          <div><h2 className="font-display text-sm font-bold uppercase">Contact</h2><div className="mt-5 space-y-3 text-sm leading-relaxed text-forest-foreground/75"><a href={`tel:${phone}`} className="block hover:text-forest-foreground">(786) 606-4596</a><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="block hover:text-forest-foreground">{address}</a></div></div>
+          <div><h2 className="font-display text-sm font-bold uppercase">Contact</h2><div className="mt-5 space-y-3 text-sm leading-relaxed text-forest-foreground/75"><a href={`tel:${phone}`} className="block hover:text-forest-foreground">(786) 606-4596</a><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="block hover:text-forest-foreground">{address}</a><div className="flex items-center gap-4 pt-3"><a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Instagram" title="Instagram" className="inline-flex size-11 items-center justify-center border border-divider text-forest-foreground hover:bg-forest-foreground/10"><Instagram size={20} /></a><a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Green Renewals on Facebook" title="Facebook" className="inline-flex size-11 items-center justify-center border border-divider text-forest-foreground hover:bg-forest-foreground/10"><Facebook size={20} /></a></div></div></div>
         </div>
         <div className="border-t border-divider"><div className="mx-auto max-w-7xl px-5 py-5 text-xs text-forest-foreground/65 sm:px-8 lg:px-10">© {new Date().getFullYear()} Green Renewals. All rights reserved.</div></div>
       </footer>
+      <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border bg-background px-4 py-2 shadow-lg lg:hidden" style={{ paddingBottom: "max(0.5rem, env(safe-area-inset-bottom))" }}>
+        <Button asChild size="lg" className="h-12 w-full rounded-sm font-bold"><a href={`tel:${phone}`}><Phone size={18} /> Call (786) 606-4596</a></Button>
+      </div>
     </div>
   );
 }
