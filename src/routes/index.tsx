@@ -164,6 +164,18 @@ function Index() {
           </div>
         </section>
 
+        <section className="py-20 sm:py-24">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.85fr] lg:gap-16 lg:px-10">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">See It For Yourself</p>
+              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">A closer look at Green Renewals.</h2>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">Watch the video to see how we help South Florida homeowners upgrade and protect their homes.</p>
+              <Button asChild size="lg" className="mt-8 h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Call (786) 606-4596 <ArrowRight /></a></Button>
+            </div>
+            <div className="flex justify-start lg:justify-end"><VideoCard /></div>
+          </div>
+        </section>
+
         <section id="financing" className="scroll-mt-8 bg-forest py-16 text-forest-foreground sm:py-20">
           <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-10">
             <div className="max-w-2xl">
