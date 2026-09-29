@@ -52,7 +52,7 @@ function ScrollReveal({ children, index = 0, className = "" }: { children: React
         requestAnimationFrame(() => requestAnimationFrame(() => element.classList.add('is-visible')));
         observer.disconnect();
       }
-    }, { threshold: 0.25, rootMargin: '0px 0px -30% 0px' });
+    }, { threshold: 0.15, rootMargin: '0px 0px -12% 0px' });
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
@@ -80,14 +80,12 @@ function VideoCard() {
           <>
             <img src={qualificationsImage.url} alt="Green Renewals program qualifications — check now if you qualify" width={1920} height={1080} loading="lazy" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-forest/10" aria-hidden="true" />
-            <Button type="button" variant="ghost" onClick={() => setPlaying(true)} aria-label="Play the Green Renewals video" className="group absolute inset-0 flex h-full w-full flex-col items-center justify-center gap-3 rounded-none hover:bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm">
+            <Button type="button" variant="ghost" onClick={() => setPlaying(true)} aria-label="Play the Green Renewals video" className="group absolute inset-0 flex h-full w-full items-center justify-center rounded-none hover:bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm">
               <span className="flex size-14 items-center justify-center rounded-full bg-background/95 text-forest shadow-lg transition-transform duration-200 group-hover:scale-110"><Play size={22} className="ml-0.5" fill="currentColor" /></span>
-              <span className="rounded-sm bg-forest/85 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground">Watch the video</span>
             </Button>
           </>
         )}
       </div>
-      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">{playing ? "Now playing" : "Click to watch"}</p>
     </div>
   );
 }
@@ -176,8 +174,7 @@ function Index() {
   return (
     <div id="top" className="min-h-screen bg-background pb-16 lg:pb-0">
       <div className="bg-forest text-forest-foreground">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 text-xs font-medium sm:px-8 lg:px-10">
-          <span>Serving Miami-Dade, Broward & West Palm Beach</span>
+        <div className="mx-auto flex max-w-7xl items-center justify-center gap-3 px-5 py-2 text-xs font-medium sm:justify-end sm:px-8 lg:px-10">
           <a href={`tel:${phone}`} className="inline-flex shrink-0 items-center gap-2 hover:underline"><Phone size={13} /> <span className="hidden sm:inline">Call us:</span> (786) 606-4596</a>
         </div>
       </div>
@@ -210,7 +207,8 @@ function Index() {
               <p className="hero-enter mb-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground/90"><span className="h-px w-9 bg-warm" /> South Florida Home Improvement</p>
               <h1 id="hero-title" className="hero-enter hero-d1 font-display text-[39px] font-bold leading-[1.15] sm:text-[52px] lg:text-[58px]">Green Renewals</h1>
               <p className="hero-enter hero-d2 mt-4 font-display text-xl font-semibold leading-snug sm:text-[27px]">Upgrade Your Home.<br />Protect Your Investment.</p>
-              <p className="hero-enter hero-d3 mt-5 max-w-[500px] text-base leading-relaxed text-forest-foreground/90 sm:text-lg">Quality home improvement solutions for the comfort, protection, and value of your South Florida home.</p>
+<p className="hero-enter hero-d3 mt-5 max-w-[500px] text-base leading-relaxed text-forest-foreground/90 sm:text-lg">Quality home improvement solutions for the comfort, protection, and value of your South Florida home.</p>
+              <p className="hero-enter hero-d3 mt-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground/80"><MapPin size={14} className="text-warm" /> Serving Miami-Dade, Broward & West Palm Beach</p>
               <div className="hero-enter hero-d4 mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Speak With Our Team <ArrowRight /></a></Button>
                 <Button asChild variant="heroOutline" size="lg" className="h-12 rounded-sm px-6 font-bold"><a href="#services">Explore Our Services</a></Button>
