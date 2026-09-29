@@ -9,6 +9,8 @@ import hvacImage from "@/assets/hvac.jpg";
 import insulationImage from "@/assets/attic-photo.png.asset.json";
 import logo from "@/assets/logo.png.asset.json";
 import video from "@/assets/green-renewals-video.mp4.asset.json";
+import teamPhoto from "@/assets/team-photo.png.asset.json";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -77,7 +79,7 @@ function Index() {
     <div id="top" className="min-h-screen bg-background pb-16 lg:pb-0">
       <div className="bg-forest text-forest-foreground">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 text-xs font-medium sm:px-8 lg:px-10">
-          <span>Serving homeowners across South Florida</span>
+          <span>Serving Miami-Dade, Broward & West Palm Beach</span>
           <a href={`tel:${phone}`} className="inline-flex shrink-0 items-center gap-2 hover:underline"><Phone size={13} /> <span className="hidden sm:inline">Call us:</span> (786) 606-4596</a>
         </div>
       </div>
@@ -156,6 +158,7 @@ function Index() {
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">About Green Renewals</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">A better home starts with a team you can trust.</h2>
               <div className="mt-7 h-1 w-14 bg-primary" />
+              <img src={teamPhoto.url} alt="The Green Renewals team outside our office" width={1920} height={1080} loading="lazy" className="mt-8 w-full rounded-sm border border-border object-cover shadow-sm" />
             </div>
             <div className="space-y-5 text-base leading-[1.8] text-foreground/85">
               <p>Green Renewals is a South Florida home improvement company dedicated to helping homeowners upgrade, protect, and improve their homes with high-quality products, professional service, and reliable workmanship.</p>
