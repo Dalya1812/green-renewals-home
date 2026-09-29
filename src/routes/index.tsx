@@ -45,19 +45,19 @@ function ScrollReveal({ children, index = 0, className = "" }: { children: React
 
   useEffect(() => {
     const element = ref.current;
-    if (!element || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    element.classList.add('scroll-reveal');
+    if (!element) return;
+    if (!('IntersectionObserver' in window)) { element.classList.add('is-visible'); return; }
     const observer = new IntersectionObserver(([entry]) => {
       if (entry?.isIntersecting) {
-        element.classList.add('is-visible');
+        requestAnimationFrame(() => requestAnimationFrame(() => element.classList.add('is-visible')));
         observer.disconnect();
       }
-    }, { threshold: 0.12, rootMargin: '0px 0px -24px 0px' });
+    }, { threshold: 0.15 });
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
 
-  return <div ref={ref} className={`reveal-delay-${index} ${className}`}>{children}</div>;
+  return <div ref={ref} className={`scroll-reveal reveal-delay-${index} ${className}`}>{children}</div>;
 }
 
 function Brand({ inverse = false }: { inverse?: boolean }) {
@@ -272,8 +272,8 @@ function Index() {
           <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.85fr] lg:gap-16 lg:px-10">
             <div>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Program Qualifications</h2>
-              <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">Check if you meet the criteria for our loan program today and take a step towards sustainable and durable property</p>
-              <Button asChild size="lg" className="mt-8 h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Call (786) 606-4596 <ArrowRight /></a></Button>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">Find out today whether your home meets the requirements for our financing program, and take the first step toward a stronger, longer-lasting, more energy-efficient property.</p>
+              <Button asChild size="lg" className="mt-8 h-auto min-h-12 whitespace-normal rounded-sm px-6 py-3 text-left font-bold"><a href="#contact">Click Here to Check If You Qualify <ArrowRight /></a></Button>
             </div>
             <div className="flex justify-start lg:justify-end"><VideoCard /></div>
           </div>
