@@ -1,12 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Check, ChevronRight, House, Leaf, MapPin, Menu, Phone, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, House, MapPin, Menu, Phone, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import homeImage from "@/assets/green-renewals-home.jpg";
-import windowsImage from "@/assets/impact-windows.jpg";
+import windowsImage from "@/assets/windows-photo.png.asset.json";
 import roofingImage from "@/assets/roofing.jpg";
 import hvacImage from "@/assets/hvac.jpg";
-import insulationImage from "@/assets/insulation.jpg";
+import insulationImage from "@/assets/attic-photo.png.asset.json";
+import logo from "@/assets/logo.png.asset.json";
+import heroVideo from "@/assets/hero-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,23 +29,16 @@ const address = "9000 Sheridan St, Suite 104, Pembroke Pines, FL 33024";
 const mapUrl = "https://www.google.com/maps/search/?api=1&query=9000+Sheridan+St+Suite+104+Pembroke+Pines+FL+33024";
 
 const services = [
-  { number: "01", title: "Impact Windows & Doors", image: windowsImage, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
+  { number: "01", title: "Impact Windows & Doors", image: windowsImage.url, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
   { number: "02", title: "Roofing", image: roofingImage, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
   { number: "03", title: "HVAC Systems", image: hvacImage, description: "Keep your home comfortable with efficient heating and cooling solutions tailored to your needs." },
-  { number: "04", title: "Wall & Attic Insulation", image: insulationImage, description: "Improve indoor comfort and energy efficiency with insulation for your walls and attic." },
+  { number: "04", title: "Wall & Attic Insulation", image: insulationImage.url, description: "Improve indoor comfort and energy efficiency with insulation for your walls and attic." },
 ];
 
 function Brand({ inverse = false }: { inverse?: boolean }) {
   return (
-    <a href="#top" className={`inline-flex items-center gap-3 ${inverse ? "text-forest-foreground" : "text-forest"}`} aria-label="Green Renewals home">
-      <span className={`relative flex size-11 shrink-0 items-center justify-center rounded-sm ${inverse ? "bg-background text-primary" : "bg-primary text-primary-foreground"}`}>
-        <House size={26} strokeWidth={1.8} />
-        <Leaf size={13} strokeWidth={2} className="absolute bottom-1.5 right-1.5" />
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className="font-display text-[17px] font-bold uppercase">Green Renewals</span>
-        <span className={`mt-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${inverse ? "text-forest-foreground/70" : "text-muted-foreground"}`}>Home Improvements</span>
-      </span>
+    <a href="#top" className={`inline-flex items-center ${inverse ? "rounded-sm bg-background px-3 py-2" : ""}`} aria-label="Green Renewals home">
+      <img src={logo.url} alt="Green Renewals — Build today for a stronger tomorrow" className="h-12 w-auto sm:h-14" />
     </a>
   );
 }
@@ -83,7 +78,9 @@ function Index() {
 
       <main>
         <section className="hero-photo relative flex min-h-[550px] items-center text-forest-foreground sm:min-h-[595px]" style={{ "--hero-image": `url(${homeImage})` } as React.CSSProperties} aria-labelledby="hero-title">
-          <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
+          <video className="absolute inset-0 h-full w-full object-cover" src={heroVideo.url} poster={homeImage} autoPlay muted loop playsInline aria-hidden="true" />
+          <div className="hero-overlay absolute inset-0" aria-hidden="true" />
+          <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
             <div className="max-w-[620px]">
               <p className="mb-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground/90"><span className="h-px w-9 bg-warm" /> South Florida Home Improvement</p>
               <h1 id="hero-title" className="font-display text-[39px] font-bold leading-[1.15] sm:text-[52px] lg:text-[58px]">Green Renewals</h1>
