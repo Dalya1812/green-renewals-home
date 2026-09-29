@@ -93,3 +93,11 @@
 
 .hero-overlay { background: linear-gradient(90deg, oklch(0.15 0.025 150 / 0.88) 0%, oklch(0.18 0.025 150 / 0.69) 38%, oklch(0.2 0.025 150 / 0.2) 76%); }
 @media (max-width: 640px) { .hero-overlay { background: linear-gradient(90deg, oklch(0.15 0.025 150 / 0.83), oklch(0.15 0.025 150 / 0.56)); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-reveal { opacity: 0; transform: translateY(38px); transition: opacity 650ms ease, transform 650ms cubic-bezier(0.2, 0.7, 0.2, 1); }
+  .scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 110ms; }
+  .reveal-delay-2 { transition-delay: 220ms; }
+  .reveal-delay-3 { transition-delay: 330ms; }
+}

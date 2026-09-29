@@ -11,3 +11,5 @@
 - [x] Add the supplied team photo to the About section.
 - [x] Add service areas: Miami-Dade, Broward, West Palm Beach (top bar, contact, metadata).
 - [x] Add a "Check if you qualify" lead form in Contact; submissions saved to the leads table.
+- [x] Simplify Contact to one qualification button that opens a name-and-phone form.
+- [x] Update team and program copy, replace the video cover with the supplied image, remove service numbers, and reveal services and three benefits as they scroll into view.
