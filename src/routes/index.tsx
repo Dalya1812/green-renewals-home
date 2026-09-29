@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Check, ChevronRight, House, MapPin, Menu, Phone, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, House, MapPin, Menu, Phone, Play, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import homeImage from "@/assets/green-renewals-home.jpg";
 import windowsImage from "@/assets/windows-photo.png.asset.json";
@@ -43,6 +43,30 @@ function Brand({ inverse = false }: { inverse?: boolean }) {
   );
 }
 
+function VideoCard() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <div className="w-full max-w-md">
+      <div className="relative aspect-video overflow-hidden rounded-sm border border-border bg-forest shadow-sm">
+        {playing ? (
+          <video className="h-full w-full bg-forest" src={heroVideo.url} poster={homeImage} controls autoPlay playsInline preload="metadata" />
+        ) : (
+          <>
+            <img src={homeImage} alt="" width={1024} height={768} loading="lazy" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-forest/40" aria-hidden="true" />
+            <button type="button" onClick={() => setPlaying(true)} aria-label="Play the Green Renewals video" className="group absolute inset-0 flex flex-col items-center justify-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm">
+              <span className="flex size-14 items-center justify-center rounded-full bg-background/95 text-forest shadow-lg transition-transform duration-200 group-hover:scale-110"><Play size={22} className="ml-0.5" fill="currentColor" /></span>
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground">Watch the video</span>
+            </button>
+          </>
+        )}
+      </div>
+      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">{playing ? "Now playing" : "Click to watch"}</p>
+    </div>
+  );
+}
+
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
@@ -78,7 +102,6 @@ function Index() {
 
       <main>
         <section className="hero-photo relative flex min-h-[550px] items-center text-forest-foreground sm:min-h-[595px]" style={{ "--hero-image": `url(${homeImage})` } as React.CSSProperties} aria-labelledby="hero-title">
-          <video className="absolute inset-0 h-full w-full object-cover" src={heroVideo.url} poster={homeImage} autoPlay muted loop playsInline aria-hidden="true" />
           <div className="hero-overlay absolute inset-0" aria-hidden="true" />
           <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
             <div className="max-w-[620px]">
