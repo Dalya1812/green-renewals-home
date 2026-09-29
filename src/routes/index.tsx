@@ -52,7 +52,7 @@ function ScrollReveal({ children, index = 0, className = "" }: { children: React
         requestAnimationFrame(() => requestAnimationFrame(() => element.classList.add('is-visible')));
         observer.disconnect();
       }
-    }, { threshold: 0.15 });
+    }, { threshold: 0.25, rootMargin: '0px 0px -30% 0px' });
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
@@ -221,9 +221,9 @@ function Index() {
 
         <div className="border-b border-border bg-mist">
           <div className="mx-auto grid max-w-7xl gap-0 px-5 sm:grid-cols-3 sm:px-8 lg:px-10">
-            <ScrollReveal index={0} className="flex items-center gap-3 py-5 sm:pr-5"><ShieldCheck className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Quality Product and Workmanship</span></ScrollReveal>
-            <ScrollReveal index={1} className="flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:px-6"><Check className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Clear, Reliable Service</span></ScrollReveal>
-            <ScrollReveal index={2} className="flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:pl-6"><House className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Solutions for Your Home</span></ScrollReveal>
+            <ScrollReveal index={0} className="benefit-reveal flex items-center gap-3 py-5 sm:pr-5"><ShieldCheck className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Quality Product and Workmanship</span></ScrollReveal>
+            <ScrollReveal index={1} className="benefit-reveal flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:px-6"><Check className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Clear, Reliable Service</span></ScrollReveal>
+            <ScrollReveal index={2} className="benefit-reveal flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:pl-6"><House className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Solutions for Your Home</span></ScrollReveal>
           </div>
         </div>
 
