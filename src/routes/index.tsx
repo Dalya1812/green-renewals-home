@@ -91,7 +91,7 @@ function Index() {
               <p className="mt-5 max-w-[500px] text-base leading-relaxed text-forest-foreground/90 sm:text-lg">Quality home improvement solutions for the comfort, protection, and value of your South Florida home.</p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Speak With Our Team <ArrowRight /></a></Button>
-                <Button asChild variant="outline" size="lg" className="h-12 rounded-sm border-forest-foreground bg-transparent px-6 font-bold text-forest-foreground hover:bg-forest-foreground hover:text-forest"><a href="#services">Explore Our Services</a></Button>
+                <Button asChild variant="heroOutline" size="lg" className="h-12 rounded-sm px-6 font-bold"><a href="#services">Explore Our Services</a></Button>
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@ function Index() {
               <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl">Financing for your next home improvement.</h2>
               <p className="mt-4 text-base leading-relaxed text-forest-foreground/85">Flexible financing options are available for qualified homeowners, making it easier to complete important improvements without the burden of a large upfront investment.</p>
             </div>
-            <Button asChild size="lg" className="h-12 shrink-0 self-start rounded-sm bg-background px-6 font-bold text-forest hover:bg-mist"><a href={`tel:${phone}`}>Discuss Your Options <ArrowRight /></a></Button>
+            <Button asChild variant="inverse" size="lg" className="h-12 shrink-0 self-start rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Discuss Your Options <ArrowRight /></a></Button>
           </div>
         </section>
 
