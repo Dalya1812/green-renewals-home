@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Green Renewals | South Florida Home Improvements" },
-      { name: "description", content: "Green Renewals helps South Florida homeowners upgrade and protect their homes with impact windows and doors, roofing, HVAC systems, and insulation." },
+      { name: "description", content: "Green Renewals helps homeowners in Miami-Dade, Broward, and West Palm Beach counties upgrade and protect their homes with impact windows and doors, roofing, HVAC systems, and insulation." },
       { property: "og:title", content: "Green Renewals | South Florida Home Improvements" },
       { property: "og:description", content: "Upgrade your home. Protect your investment. Explore roofing, impact windows and doors, HVAC, and insulation services in South Florida." },
       { property: "og:type", content: "website" },
