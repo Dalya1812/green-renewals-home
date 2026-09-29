@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Check, ChevronRight, House, Leaf, MapPin, Menu, Phone, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, House, MapPin, Menu, Phone, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import homeImage from "@/assets/green-renewals-home.jpg";
 import windowsImage from "@/assets/windows-photo.png.asset.json";
