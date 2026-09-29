@@ -74,7 +74,7 @@ function Index() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <div id="top" className="min-h-screen bg-background">
+    <div id="top" className="min-h-screen bg-background pb-16 lg:pb-0">
       <div className="bg-forest text-forest-foreground">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 text-xs font-medium sm:px-8 lg:px-10">
           <span>Serving homeowners across South Florida</span>
@@ -127,7 +127,7 @@ function Index() {
           </div>
         </div>
 
-        <section id="services" className="scroll-mt-8 py-20 sm:py-24">
+        <section id="services" className="scroll-mt-24 py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <div className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">What We Do</p>
@@ -150,7 +150,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="about" className="scroll-mt-8 border-y border-border bg-mist py-20 sm:py-24">
+        <section id="about" className="scroll-mt-24 border-y border-border bg-mist py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-10">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">About Green Renewals</p>
@@ -178,7 +178,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="financing" className="scroll-mt-8 bg-forest py-16 text-forest-foreground sm:py-20">
+        <section id="financing" className="scroll-mt-24 bg-forest py-16 text-forest-foreground sm:py-20">
           <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-10">
             <div className="max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-warm">Flexible Options</p>
@@ -189,7 +189,7 @@ function Index() {
           </div>
         </section>
 
-        <section id="contact" className="scroll-mt-8 py-20 sm:py-24">
+        <section id="contact" className="scroll-mt-24 py-20 sm:py-24">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-10">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">Get in Touch</p>
