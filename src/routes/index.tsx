@@ -1,24 +1,184 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
+import { ArrowRight, Check, ChevronRight, House, Leaf, MapPin, Menu, Phone, ShieldCheck, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import homeImage from "@/assets/green-renewals-home.jpg";
+import windowsImage from "@/assets/impact-windows.jpg";
+import roofingImage from "@/assets/roofing.jpg";
+import hvacImage from "@/assets/hvac.jpg";
+import insulationImage from "@/assets/insulation.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Green Renewals | South Florida Home Improvements" },
+      { name: "description", content: "Green Renewals helps South Florida homeowners upgrade and protect their homes with impact windows and doors, roofing, HVAC systems, and insulation." },
+      { property: "og:title", content: "Green Renewals | South Florida Home Improvements" },
+      { property: "og:description", content: "Upgrade your home. Protect your investment. Explore roofing, impact windows and doors, HVAC, and insulation services in South Florida." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const phone = "+17866064596";
+const address = "9000 Sheridan St, Suite 104, Pembroke Pines, FL 33024";
+const mapUrl = "https://www.google.com/maps/search/?api=1&query=9000+Sheridan+St+Suite+104+Pembroke+Pines+FL+33024";
+
+const services = [
+  { number: "01", title: "Impact Windows & Doors", image: windowsImage, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
+  { number: "02", title: "Roofing", image: roofingImage, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
+  { number: "03", title: "HVAC Systems", image: hvacImage, description: "Keep your home comfortable with efficient heating and cooling solutions tailored to your needs." },
+  { number: "04", title: "Wall & Attic Insulation", image: insulationImage, description: "Improve indoor comfort and energy efficiency with insulation for your walls and attic." },
+];
+
+function Brand({ inverse = false }: { inverse?: boolean }) {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <a href="#top" className={`inline-flex items-center gap-3 ${inverse ? "text-forest-foreground" : "text-forest"}`} aria-label="Green Renewals home">
+      <span className={`relative flex size-11 shrink-0 items-center justify-center rounded-sm ${inverse ? "bg-background text-primary" : "bg-primary text-primary-foreground"}`}>
+        <House size={26} strokeWidth={1.8} />
+        <Leaf size={13} strokeWidth={2} className="absolute bottom-1.5 right-1.5" />
+      </span>
+      <span className="flex flex-col leading-none">
+        <span className="font-display text-[17px] font-bold uppercase">Green Renewals</span>
+        <span className={`mt-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] ${inverse ? "text-forest-foreground/70" : "text-muted-foreground"}`}>Home Improvements</span>
+      </span>
+    </a>
+  );
+}
+
+function Index() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
+  return (
+    <div id="top" className="min-h-screen bg-background">
+      <div className="bg-forest text-forest-foreground">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-5 py-2 text-xs font-medium sm:px-8 lg:px-10">
+          <span>Serving homeowners across South Florida</span>
+          <a href={`tel:${phone}`} className="inline-flex shrink-0 items-center gap-2 hover:underline"><Phone size={13} /> <span className="hidden sm:inline">Call us:</span> (786) 606-4596</a>
+        </div>
+      </div>
+
+      <header className="relative z-20 border-b border-border bg-background">
+        <div className="mx-auto flex h-[78px] max-w-7xl items-center justify-between gap-6 px-5 sm:px-8 lg:px-10">
+          <Brand />
+          <nav className="hidden items-center gap-8 lg:flex" aria-label="Main navigation">
+            <a href="#top" className="text-sm font-semibold text-primary">Home</a>
+            <a href="#services" className="text-sm font-semibold text-foreground transition-colors hover:text-primary">Our Services</a>
+            <a href="#about" className="text-sm font-semibold text-foreground transition-colors hover:text-primary">About Us</a>
+            <a href="#financing" className="text-sm font-semibold text-foreground transition-colors hover:text-primary">Financing</a>
+            <a href="#contact" className="text-sm font-semibold text-foreground transition-colors hover:text-primary">Contact</a>
+          </nav>
+          <div className="hidden lg:block"><Button asChild size="lg" className="h-11 rounded-sm px-5 font-bold"><a href={`tel:${phone}`}>Call for a Consultation <ArrowRight /></a></Button></div>
+          <Button variant="ghost" size="icon" className="lg:hidden" aria-label={menuOpen ? "Close menu" : "Open menu"} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X /> : <Menu />}</Button>
+        </div>
+        {menuOpen && (
+          <nav className="absolute inset-x-0 top-full flex flex-col border-t border-border bg-background px-5 py-3 shadow-lg lg:hidden" aria-label="Mobile navigation">
+            {[["Home", "#top"], ["Our Services", "#services"], ["About Us", "#about"], ["Financing", "#financing"], ["Contact", "#contact"]].map(([label, href]) => <a key={href} href={href} onClick={closeMenu} className="border-b border-border py-3 text-sm font-semibold text-foreground last:border-0">{label}</a>)}
+          </nav>
+        )}
+      </header>
+
+      <main>
+        <section className="hero-photo relative flex min-h-[550px] items-center text-forest-foreground sm:min-h-[595px]" style={{ "--hero-image": `url(${homeImage})` } as React.CSSProperties} aria-labelledby="hero-title">
+          <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
+            <div className="max-w-[620px]">
+              <p className="mb-5 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground/90"><span className="h-px w-9 bg-warm" /> South Florida Home Improvement</p>
+              <h1 id="hero-title" className="font-display text-[39px] font-bold leading-[1.15] sm:text-[52px] lg:text-[58px]">Green Renewals</h1>
+              <p className="mt-4 font-display text-xl font-semibold leading-snug sm:text-[27px]">Upgrade Your Home.<br />Protect Your Investment.</p>
+              <p className="mt-5 max-w-[500px] text-base leading-relaxed text-forest-foreground/90 sm:text-lg">Quality home improvement solutions for the comfort, protection, and value of your South Florida home.</p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Button asChild size="lg" className="h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Speak With Our Team <ArrowRight /></a></Button>
+                <Button asChild variant="outline" size="lg" className="h-12 rounded-sm border-forest-foreground bg-transparent px-6 font-bold text-forest-foreground hover:bg-forest-foreground hover:text-forest"><a href="#services">Explore Our Services</a></Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="border-b border-border bg-mist">
+          <div className="mx-auto grid max-w-7xl gap-0 px-5 sm:grid-cols-3 sm:px-8 lg:px-10">
+            <div className="flex items-center gap-3 py-5 sm:pr-5"><ShieldCheck className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Quality Products & Workmanship</span></div>
+            <div className="flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:px-6"><Check className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Clear, Reliable Service</span></div>
+            <div className="flex items-center gap-3 border-t border-border py-5 sm:border-l sm:border-t-0 sm:pl-6"><House className="size-6 shrink-0 text-primary" strokeWidth={1.8} /><span className="text-sm font-semibold">Solutions for Your Home</span></div>
+          </div>
+        </div>
+
+        <section id="services" className="scroll-mt-8 py-20 sm:py-24">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+            <div className="mb-10 max-w-2xl">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">What We Do</p>
+              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Home improvements that make a difference.</h2>
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground">Complete solutions to help you protect, improve, and enjoy your home for years to come.</p>
+            </div>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {services.map((service) => (
+                <article key={service.number} className="group overflow-hidden rounded-sm border border-border bg-card transition-shadow hover:shadow-md">
+                  <div className="aspect-[4/3] overflow-hidden"><img src={service.image} alt={service.title} width={1024} height={768} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.035]" /></div>
+                  <div className="p-5">
+                    <span className="text-xs font-bold text-primary">{service.number} / SERVICE</span>
+                    <h3 className="mt-3 min-h-[3.5rem] font-display text-lg font-bold leading-snug text-forest">{service.title}</h3>
+                    <p className="mt-2 min-h-[6rem] text-sm leading-relaxed text-muted-foreground">{service.description}</p>
+                    <a href={`tel:${phone}`} className="mt-4 inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors hover:text-forest">Ask about this service <ChevronRight size={16} /></a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="scroll-mt-8 border-y border-border bg-mist py-20 sm:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20 lg:px-10">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">About Green Renewals</p>
+              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">A better home starts with a team you can trust.</h2>
+              <div className="mt-7 h-1 w-14 bg-primary" />
+            </div>
+            <div className="space-y-5 text-base leading-[1.8] text-foreground/85">
+              <p>Green Renewals is a South Florida home improvement company dedicated to helping homeowners upgrade, protect, and improve their homes with high-quality products, professional service, and reliable workmanship.</p>
+              <p>We specialize in roofing, impact windows and doors, HVAC systems, and insulation, providing homeowners with complete solutions designed to improve comfort, energy efficiency, protection, and the overall value of their property.</p>
+              <p>From the initial consultation through project completion, our team is committed to making the process simple, transparent, and stress-free. We work with trusted professionals and quality materials while helping each homeowner understand the options available for their specific property and project.</p>
+              <p>At Green Renewals, our goal is simple: professional service, quality work, clear communication, and results homeowners can feel confident about.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="financing" className="scroll-mt-8 bg-forest py-16 text-forest-foreground sm:py-20">
+          <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-10">
+            <div className="max-w-2xl">
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-warm">Flexible Options</p>
+              <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl">Financing for your next home improvement.</h2>
+              <p className="mt-4 text-base leading-relaxed text-forest-foreground/85">Flexible financing options are available for qualified homeowners, making it easier to complete important improvements without the burden of a large upfront investment.</p>
+            </div>
+            <Button asChild size="lg" className="h-12 shrink-0 self-start rounded-sm bg-background px-6 font-bold text-forest hover:bg-mist"><a href={`tel:${phone}`}>Discuss Your Options <ArrowRight /></a></Button>
+          </div>
+        </section>
+
+        <section id="contact" className="scroll-mt-8 py-20 sm:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-8 lg:grid-cols-2 lg:gap-20 lg:px-10">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">Get in Touch</p>
+              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Let’s talk about your home.</h2>
+              <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">Whether you’re planning an upgrade or exploring your options, our team is ready to help you take the next step.</p>
+              <Button asChild size="lg" className="mt-8 h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Call (786) 606-4596 <ArrowRight /></a></Button>
+            </div>
+            <div className="border-t border-border lg:border-l lg:border-t-0 lg:pl-12">
+              <div className="flex gap-5 border-b border-border py-7"><Phone className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Phone</h3><a href={`tel:${phone}`} className="mt-1 inline-block text-lg text-foreground hover:text-primary">(786) 606-4596</a></div></div>
+              <div className="flex gap-5 py-7"><MapPin className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Office Address</h3><p className="mt-1 text-base text-foreground">{address}</p><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-forest">Get directions <ArrowRight size={15} /></a></div></div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer className="bg-forest text-forest-foreground">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:grid-cols-3 sm:px-8 lg:px-10">
+          <div><Brand inverse /><p className="mt-5 max-w-xs text-sm leading-relaxed text-forest-foreground/75">Upgrade Your Home. Protect Your Investment.</p></div>
+          <div><h2 className="font-display text-sm font-bold uppercase">Quick Links</h2><div className="mt-5 flex flex-col gap-3 text-sm text-forest-foreground/75"><a href="#services" className="hover:text-forest-foreground">Our Services</a><a href="#about" className="hover:text-forest-foreground">About Us</a><a href="#financing" className="hover:text-forest-foreground">Financing</a><a href="#contact" className="hover:text-forest-foreground">Contact</a></div></div>
+          <div><h2 className="font-display text-sm font-bold uppercase">Contact</h2><div className="mt-5 space-y-3 text-sm leading-relaxed text-forest-foreground/75"><a href={`tel:${phone}`} className="block hover:text-forest-foreground">(786) 606-4596</a><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="block hover:text-forest-foreground">{address}</a></div></div>
+        </div>
+        <div className="border-t border-divider"><div className="mx-auto max-w-7xl px-5 py-5 text-xs text-forest-foreground/65 sm:px-8 lg:px-10">© {new Date().getFullYear()} Green Renewals. All rights reserved.</div></div>
+      </footer>
     </div>
   );
 }

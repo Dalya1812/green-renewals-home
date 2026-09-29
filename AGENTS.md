@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep Green Renewals as one English-language home page with anchored sections; the supplied copy targets South Florida homeowners and does not require separate content routes.
+- Use direct phone and map actions for contact rather than a nonfunctional lead form; no submission destination was supplied.
