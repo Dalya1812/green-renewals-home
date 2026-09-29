@@ -287,6 +287,7 @@ function Index() {
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Let’s talk about your home.</h2>
               <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">Whether you’re planning an upgrade or exploring your options, our team is ready to help you take the next step.</p>
               <Button asChild size="lg" className="mt-8 h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Call (786) 606-4596 <ArrowRight /></a></Button>
+              <QualificationForm />
             </div>
             <div className="border-t border-border lg:border-l lg:border-t-0 lg:pl-12">
               <div className="flex gap-5 border-b border-border py-7"><Phone className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Phone</h3><a href={`tel:${phone}`} className="mt-1 inline-block text-lg text-foreground hover:text-primary">(786) 606-4596</a></div></div>
