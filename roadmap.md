@@ -13,3 +13,4 @@
 - [x] Add a "Check if you qualify" lead form in Contact; submissions saved to the leads table.
 - [x] Simplify Contact to one qualification button that opens a name-and-phone form.
 - [x] Update team and program copy, replace the video cover with the supplied image, remove service numbers, and reveal services and three benefits as they scroll into view.
+- [x] Add restrained institutional entrance animations: hero settle-in on load, section headings and columns easing up on scroll, and the green rule drawing out.
