@@ -90,3 +90,6 @@
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
 }
+
+.hero-overlay { background: linear-gradient(90deg, oklch(0.15 0.025 150 / 0.88) 0%, oklch(0.18 0.025 150 / 0.69) 38%, oklch(0.2 0.025 150 / 0.2) 76%); }
+@media (max-width: 640px) { .hero-overlay { background: linear-gradient(90deg, oklch(0.15 0.025 150 / 0.83), oklch(0.15 0.025 150 / 0.56)); } }
