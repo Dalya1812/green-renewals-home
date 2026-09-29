@@ -7,4 +7,4 @@
 - [x] Retain the current page design and make only a modest typography change to feel more official.
 - [x] Hide the “Edit with Lovable” badge on published pages.
 - [x] Use the supplied roof photo for Roofing, keep calling accessible on mobile, link Instagram and Facebook, and fix directions.
-- [ ] Replace the Facebook search fallback with the business’s exact page URL (waiting for the user to provide it).
+- [x] Replace the Facebook search fallback with the business's exact page URL.
