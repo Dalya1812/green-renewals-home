@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowRight, Check, ChevronRight, House, MapPin, Menu, Phone, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, House, MapPin, Menu, Phone, Play, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import homeImage from "@/assets/green-renewals-home.jpg";
 import windowsImage from "@/assets/windows-photo.png.asset.json";
@@ -8,7 +8,7 @@ import roofingImage from "@/assets/roofing.jpg";
 import hvacImage from "@/assets/hvac.jpg";
 import insulationImage from "@/assets/attic-photo.png.asset.json";
 import logo from "@/assets/logo.png.asset.json";
-import heroVideo from "@/assets/hero-video.mp4.asset.json";
+import video from "@/assets/green-renewals-video.mp4.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -40,6 +40,30 @@ function Brand({ inverse = false }: { inverse?: boolean }) {
     <a href="#top" className={`inline-flex items-center ${inverse ? "rounded-sm bg-background px-3 py-2" : ""}`} aria-label="Green Renewals home">
       <img src={logo.url} alt="Green Renewals — Build today for a stronger tomorrow" className="h-12 w-auto sm:h-14" />
     </a>
+  );
+}
+
+function VideoCard() {
+  const [playing, setPlaying] = useState(false);
+
+  return (
+    <div className="w-full max-w-md">
+      <div className="relative aspect-video overflow-hidden rounded-sm border border-border bg-forest shadow-sm">
+        {playing ? (
+          <video className="h-full w-full bg-forest" src={video.url} poster={homeImage} controls autoPlay playsInline preload="metadata" />
+        ) : (
+          <>
+            <img src={homeImage} alt="" width={1024} height={768} loading="lazy" className="h-full w-full object-cover" />
+            <div className="absolute inset-0 bg-forest/40" aria-hidden="true" />
+            <button type="button" onClick={() => setPlaying(true)} aria-label="Play the Green Renewals video" className="group absolute inset-0 flex flex-col items-center justify-center gap-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm">
+              <span className="flex size-14 items-center justify-center rounded-full bg-background/95 text-forest shadow-lg transition-transform duration-200 group-hover:scale-110"><Play size={22} className="ml-0.5" fill="currentColor" /></span>
+              <span className="text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground">Watch the video</span>
+            </button>
+          </>
+        )}
+      </div>
+      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">{playing ? "Now playing" : "Click to watch"}</p>
+    </div>
   );
 }
 
@@ -78,7 +102,6 @@ function Index() {
 
       <main>
         <section className="hero-photo relative flex min-h-[550px] items-center text-forest-foreground sm:min-h-[595px]" style={{ "--hero-image": `url(${homeImage})` } as React.CSSProperties} aria-labelledby="hero-title">
-          <video className="absolute inset-0 h-full w-full object-cover" src={heroVideo.url} poster={homeImage} autoPlay muted loop playsInline aria-hidden="true" />
           <div className="hero-overlay absolute inset-0" aria-hidden="true" />
           <div className="relative mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 lg:px-10">
             <div className="max-w-[620px]">
@@ -138,6 +161,18 @@ function Index() {
               <p>From the initial consultation through project completion, our team is committed to making the process simple, transparent, and stress-free. We work with trusted professionals and quality materials while helping each homeowner understand the options available for their specific property and project.</p>
               <p>At Green Renewals, our goal is simple: professional service, quality work, clear communication, and results homeowners can feel confident about.</p>
             </div>
+          </div>
+        </section>
+
+        <section className="py-20 sm:py-24">
+          <div className="mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-8 lg:grid-cols-[1fr_0.85fr] lg:gap-16 lg:px-10">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">See It For Yourself</p>
+              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">A closer look at Green Renewals.</h2>
+              <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">Watch the video to see how we help South Florida homeowners upgrade and protect their homes.</p>
+              <Button asChild size="lg" className="mt-8 h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Call (786) 606-4596 <ArrowRight /></a></Button>
+            </div>
+            <div className="flex justify-start lg:justify-end"><VideoCard /></div>
           </div>
         </section>
 
