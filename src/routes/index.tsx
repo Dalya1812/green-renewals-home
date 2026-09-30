@@ -13,17 +13,45 @@ import teamPhoto from "@/assets/self-hosted/team-photo.png";
 import qualificationsImage from "@/assets/self-hosted/program-qualifications.png";
 import { supabase } from "@/integrations/supabase/client";
 
+const seoTitle = "Impact Windows, Roofing & HVAC in South Florida | Green Renewals";
+const seoDescription = "Get impact windows & doors, a new roof, HVAC or insulation with flexible financing. Serving Miami-Dade, Broward & West Palm Beach. Check if you qualify in 30 seconds — free.";
+const siteUrl = "https://green-renewals-home.lovable.app/";
+
 export const Route = createFileRoute("/")({
   head: () => ({
-    links: [{ rel: "preload", as: "image", href: homeImage, fetchPriority: "high" }],
-    meta: [
-      { title: "Green Renewals | South Florida Home Improvements" },
-      { name: "description", content: "Green Renewals helps homeowners in Miami-Dade, Broward, and West Palm Beach counties upgrade and protect their homes with impact windows and doors, roofing, HVAC systems, and insulation." },
-      { property: "og:title", content: "Green Renewals | South Florida Home Improvements" },
-      { property: "og:description", content: "Upgrade your home. Protect your investment. Explore roofing, impact windows and doors, HVAC, and insulation services in South Florida." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+    links: [
+      { rel: "preload", as: "image", href: homeImage, fetchPriority: "high" },
+      { rel: "canonical", href: siteUrl },
     ],
+    meta: [
+      { title: seoTitle },
+      { name: "description", content: seoDescription },
+      { property: "og:title", content: "Protect Your South Florida Home — Check If You Qualify | Green Renewals" },
+      { property: "og:description", content: "Hurricane-ready impact windows, roofing, HVAC and insulation with financing for qualified homeowners in Miami-Dade, Broward & West Palm Beach. Free eligibility check." },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: siteUrl },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: seoTitle },
+      { name: "twitter:description", content: seoDescription },
+    ],
+    scripts: [{
+      type: "application/ld+json",
+      children: JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "HomeAndConstructionBusiness",
+        name: "Green Renewals",
+        url: siteUrl,
+        telephone: "+1-786-606-4596",
+        address: { "@type": "PostalAddress", streetAddress: "9000 Sheridan St, Suite 104", addressLocality: "Pembroke Pines", addressRegion: "FL", postalCode: "33024", addressCountry: "US" },
+        areaServed: ["Miami-Dade County, FL", "Broward County, FL", "Palm Beach County, FL"],
+        sameAs: ["https://www.instagram.com/green_renewals/", "https://www.facebook.com/profile.php?id=61594797155664"],
+        hasOfferCatalog: {
+          "@type": "OfferCatalog",
+          name: "Home Improvement Services",
+          itemListElement: ["Impact Windows & Doors", "Roofing", "HVAC Systems", "Wall & Attic Insulation"].map((n) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: n } })),
+        },
+      }),
+    }],
   }),
   component: Index,
 });
@@ -93,9 +121,12 @@ function VideoCard() {
   );
 }
 
-function QualificationForm() {
+type FormVariant = "card" | "compact" | "band";
+
+function QualificationForm({ variant = "card", id, source = "General inquiry" }: { variant?: FormVariant; id?: string; source?: string }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
   const [error, setError] = useState("");
+  const dark = variant === "band";
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -111,7 +142,7 @@ function QualificationForm() {
       name,
       phone: leadPhone,
       email: null,
-      service: "General inquiry",
+      service: source,
       county: null,
       message: null,
     });
@@ -124,41 +155,53 @@ function QualificationForm() {
     setStatus("done");
   }
 
-  const fieldClass = "w-full rounded-sm border border-border bg-background px-3 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/40";
+  const fieldClass = `h-12 w-full rounded-sm border px-3 text-sm focus:outline-none focus:ring-2 ${dark ? "border-forest-foreground/30 bg-forest-foreground text-forest placeholder:text-forest/50 focus:ring-warm" : "border-border bg-background text-foreground placeholder:text-muted-foreground focus:ring-primary/40"}`;
+  const labelClass = `flex flex-col gap-1.5 text-xs font-bold uppercase tracking-[0.08em] ${dark ? "text-forest-foreground/85" : "text-foreground"}`;
+  const submitLabel = variant === "band" ? "See My Options" : variant === "compact" ? "Check My Eligibility" : "Send My Details";
+
+  if (status === "done") {
+    return (
+      <div id={id} className={`scroll-mt-24 rounded-sm border p-6 ${dark ? "border-forest-foreground/25" : "border-border bg-card shadow-sm"}`}>
+        <Check className={`size-8 ${dark ? "text-warm" : "text-primary"}`} strokeWidth={2} />
+        <h3 className={`mt-3 font-display text-lg font-bold ${dark ? "" : "text-forest"}`}>Thank you — we received your details.</h3>
+        <p className={`mt-2 text-sm leading-relaxed ${dark ? "text-forest-foreground/85" : "text-muted-foreground"}`}>A member of our team will contact you shortly. Prefer to talk now? Call <a href={`tel:${phone}`} className="font-bold underline">(786) 606-4596</a>.</p>
+      </div>
+    );
+  }
+
+  const fields = (
+    <>
+      <label className={labelClass}>Full name<input name="name" type="text" required maxLength={100} autoComplete="name" placeholder="Your name" className={fieldClass} /></label>
+      <label className={labelClass}>Phone<input name="phone" type="tel" required maxLength={20} autoComplete="tel" inputMode="tel" placeholder="(786) 000-0000" className={fieldClass} /></label>
+    </>
+  );
+  const submit = (
+    <Button type="submit" size="lg" variant={dark ? "inverse" : "default"} disabled={status === "submitting"} className="h-12 w-full rounded-sm px-6 font-bold sm:w-auto">
+      {status === "submitting" ? "Sending…" : submitLabel} <ArrowRight />
+    </Button>
+  );
+  const note = <p className={`mt-3 flex items-center gap-2 text-xs ${dark ? "text-forest-foreground/70" : "text-muted-foreground"}`}><ShieldCheck size={14} /> Free, no-obligation check. We never share your information.</p>;
+  const errorLine = error && <p role="alert" className={`mt-3 text-sm font-semibold ${dark ? "text-warm" : "text-destructive"}`}>{error}</p>;
+
+  if (variant === "card") {
+    return (
+      <form id={id} onSubmit={handleSubmit} noValidate className="scroll-mt-24 rounded-sm border border-border border-t-4 border-t-primary bg-card p-6 shadow-sm sm:p-7">
+        <h3 className="font-display text-lg font-bold text-forest">Check if you qualify</h3>
+        <p className="mt-1 text-sm text-muted-foreground">Two quick details — our team calls you back with your options.</p>
+        <div className="mt-5 grid gap-4 sm:grid-cols-2">{fields}</div>
+        {errorLine}
+        <div className="mt-5">{submit}</div>
+        {note}
+      </form>
+    );
+  }
 
   return (
-    <div id="qualify" className="mt-8 max-w-lg scroll-mt-24">
-      {status === "done" ? (
-        <div className="rounded-sm border border-border bg-card p-6 shadow-sm">
-          <div className="flex flex-col items-start gap-3">
-            <Check className="size-8 text-primary" strokeWidth={2} />
-            <h3 className="font-display text-lg font-bold text-forest">Thank you — we received your details.</h3>
-            <p className="text-sm leading-relaxed text-muted-foreground">A member of our team will contact you shortly. If you prefer, you can also call us now at <a href={`tel:${phone}`} className="font-bold text-primary hover:text-forest">(786) 606-4596</a>.</p>
-          </div>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} noValidate className="rounded-sm border border-border bg-card p-6 shadow-sm">
-          <h3 className="font-display text-lg font-bold text-forest">Check if you qualify</h3>
-          <p className="mt-1 text-sm text-muted-foreground">Leave your name and phone number and we will call you back.</p>
-          <div className="mt-5 grid gap-3">
-            <label className="flex flex-col gap-1.5 text-sm font-semibold text-foreground">
-              Full name *
-              <input name="name" type="text" required maxLength={100} placeholder="Your name" className={fieldClass} />
-            </label>
-            <label className="flex flex-col gap-1.5 text-sm font-semibold text-foreground">
-              Phone *
-              <input name="phone" type="tel" required maxLength={20} placeholder="(786) 000-0000" className={fieldClass} />
-            </label>
-          </div>
-          {error && <p className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
-          <div className="mt-5">
-            <Button type="submit" size="lg" disabled={status === "submitting"} className="h-12 rounded-sm px-6 font-bold">
-              {status === "submitting" ? "Sending…" : "Send My Details"} <ArrowRight />
-            </Button>
-          </div>
-        </form>
-      )}
-    </div>
+    <form id={id} onSubmit={handleSubmit} noValidate className={`scroll-mt-24 ${variant === "compact" ? "rounded-sm border border-border bg-mist p-5" : ""}`}>
+      <div className="grid items-end gap-3 sm:grid-cols-[1fr_1fr_auto]">{fields}{submit}</div>
+      {errorLine}
+      {note}
+    </form>
   );
 }
 
