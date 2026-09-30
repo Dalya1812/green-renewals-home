@@ -2,11 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Check, ChevronRight, Facebook, House, Instagram, MapPin, Menu, Phone, Play, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import homeImage from "@/assets/green-renewals-home.jpg";
-import windowsImage from "@/assets/windows-photo.png.asset.json";
-import roofingImage from "@/assets/green-renewals-roof.png.asset.json";
-import hvacImage from "@/assets/hvac.jpg";
-import insulationImage from "@/assets/attic-photo.png.asset.json";
+import homeImage from "@/assets/green-renewals-home.webp";
+import windowsImage from "@/assets/windows-optimized.webp.asset.json";
+import roofingImage from "@/assets/green-renewals-roof-optimized.webp.asset.json";
+import hvacImage from "@/assets/hvac.webp";
+import insulationImage from "@/assets/attic-optimized.webp.asset.json";
 import logo from "@/assets/logo.png.asset.json";
 import video from "@/assets/green-renewals-video.mp4.asset.json";
 import teamPhoto from "@/assets/team-photo.png.asset.json";
@@ -15,6 +15,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [{ rel: "preload", as: "image", href: homeImage, fetchPriority: "high" }],
     meta: [
       { title: "Green Renewals | South Florida Home Improvements" },
       { name: "description", content: "Green Renewals helps homeowners in Miami-Dade, Broward, and West Palm Beach counties upgrade and protect their homes with impact windows and doors, roofing, HVAC systems, and insulation." },
@@ -236,9 +237,9 @@ function Index() {
             </ScrollReveal>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {services.map((service, index) => (
-                <ScrollReveal key={service.title} index={index} className="service-reveal h-full">
+                 <ScrollReveal key={service.title} index={index} className={`service-reveal service-direction-${index} h-full`}>
                 <article className="group h-full overflow-hidden rounded-sm border border-border bg-card transition-shadow hover:shadow-md">
-                  <div className="aspect-[4/3] overflow-hidden"><img src={service.image} alt={service.title} width={1024} height={768} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.035]" /></div>
+                   <div className="aspect-[4/3] overflow-hidden"><img src={service.image} alt={service.title} width={1024} height={768} loading="eager" decoding="async" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.035]" /></div>
                   <div className="p-5">
                     <h3 className="min-h-[3.5rem] font-display text-lg font-bold leading-snug text-forest">{service.title}</h3>
                     <p className="mt-2 min-h-[6rem] text-sm leading-relaxed text-muted-foreground">{service.description}</p>
