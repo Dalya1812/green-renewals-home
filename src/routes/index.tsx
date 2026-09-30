@@ -3,14 +3,14 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ArrowRight, Check, ChevronRight, Facebook, House, Instagram, MapPin, Menu, Phone, Play, ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import homeImage from "@/assets/green-renewals-home.webp";
-import windowsImage from "@/assets/windows-optimized.webp.asset.json";
-import roofingImage from "@/assets/green-renewals-roof-optimized.webp.asset.json";
+import windowsImage from "@/assets/self-hosted/windows-optimized.webp";
+import roofingImage from "@/assets/self-hosted/green-renewals-roof-optimized.webp";
 import hvacImage from "@/assets/hvac.webp";
-import insulationImage from "@/assets/attic-optimized.webp.asset.json";
-import logo from "@/assets/logo.png.asset.json";
-import video from "@/assets/green-renewals-video.mp4.asset.json";
-import teamPhoto from "@/assets/team-photo.png.asset.json";
-import qualificationsImage from "@/assets/program-qualifications.png.asset.json";
+import insulationImage from "@/assets/self-hosted/attic-optimized.webp";
+import logo from "@/assets/self-hosted/logo.png";
+import video from "@/assets/self-hosted/green-renewals-video.mp4";
+import teamPhoto from "@/assets/self-hosted/team-photo.png";
+import qualificationsImage from "@/assets/self-hosted/program-qualifications.png";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/")({
@@ -35,10 +35,10 @@ const instagramUrl = "https://www.instagram.com/green_renewals/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61594797155664";
 
 const services = [
-  { title: "Impact Windows & Doors", image: windowsImage.url, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
-  { title: "Roofing", image: roofingImage.url, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
+  { title: "Impact Windows & Doors", image: windowsImage, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
+  { title: "Roofing", image: roofingImage, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
   { title: "HVAC Systems", image: hvacImage, description: "Keep your home comfortable with efficient heating and cooling solutions tailored to your needs." },
-  { title: "Wall & Attic Insulation", image: insulationImage.url, description: "Improve indoor comfort and energy efficiency with insulation for your walls and attic." },
+  { title: "Wall & Attic Insulation", image: insulationImage, description: "Improve indoor comfort and energy efficiency with insulation for your walls and attic." },
 ];
 
 function ScrollReveal({ children, index = 0, className = "" }: { children: ReactNode; index?: number; className?: string }) {
@@ -66,7 +66,7 @@ function ScrollReveal({ children, index = 0, className = "" }: { children: React
 function Brand({ inverse = false }: { inverse?: boolean }) {
   return (
     <a href="#top" className={`inline-flex items-center ${inverse ? "rounded-sm bg-background px-3 py-2" : ""}`} aria-label="Green Renewals home">
-      <img src={logo.url} alt="Green Renewals — Build today for a stronger tomorrow" className="h-12 w-auto sm:h-14" />
+      <img src={logo} alt="Green Renewals — Build today for a stronger tomorrow" className="h-12 w-auto sm:h-14" />
     </a>
   );
 }
@@ -78,10 +78,10 @@ function VideoCard() {
     <div className="w-full max-w-md">
       <div className="relative aspect-video overflow-hidden rounded-sm border border-border bg-forest shadow-sm">
         {playing ? (
-          <video className="h-full w-full bg-forest" src={video.url} poster={qualificationsImage.url} controls autoPlay playsInline preload="metadata" />
+          <video className="h-full w-full bg-forest" src={video} poster={qualificationsImage} controls autoPlay playsInline preload="metadata" />
         ) : (
           <>
-            <img src={qualificationsImage.url} alt="Green Renewals program qualifications — check now if you qualify" width={1920} height={1080} loading="lazy" className="h-full w-full object-cover" />
+            <img src={qualificationsImage} alt="Green Renewals program qualifications — check now if you qualify" width={1920} height={1080} loading="lazy" className="h-full w-full object-cover" />
             <div className="absolute inset-0 bg-forest/10" aria-hidden="true" />
             <Button type="button" variant="ghost" onClick={() => setPlaying(true)} aria-label="Play the Green Renewals video" className="group absolute inset-0 flex h-full w-full items-center justify-center rounded-none hover:bg-transparent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-warm">
               <span className="flex size-14 items-center justify-center rounded-full bg-background/95 text-forest shadow-lg transition-transform duration-200 group-hover:scale-110"><Play size={22} className="ml-0.5" fill="currentColor" /></span>
@@ -170,7 +170,7 @@ function QualificationForm() {
   );
 }
 
-function Index() {
+export function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = () => setMenuOpen(false);
 
@@ -258,7 +258,7 @@ function Index() {
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">About Green Renewals</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Behind every successful project is a team committed to qualified professionalism and attention to detail</h2>
               <div className="rule-grow mt-7 h-1 w-14 bg-primary" />
-              <img src={teamPhoto.url} alt="The Green Renewals team outside our office" width={1920} height={1080} loading="lazy" className="mt-8 w-full rounded-sm border border-border object-cover shadow-sm" />
+              <img src={teamPhoto} alt="The Green Renewals team outside our office" width={1920} height={1080} loading="lazy" className="mt-8 w-full rounded-sm border border-border object-cover shadow-sm" />
             </ScrollReveal>
             <ScrollReveal index={1} className="space-y-5 text-base leading-[1.8] text-foreground/85">
               <p>Green Renewals is a South Florida home improvement company dedicated to helping homeowners upgrade, protect, and improve their homes with high-quality products, professional service, and reliable workmanship.</p>
