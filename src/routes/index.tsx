@@ -267,7 +267,7 @@ export function Index() {
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <ScrollReveal className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">What We Do</p>
-              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Home improvements that make a difference.</h2>
+              <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Impact windows, roofing, HVAC & insulation in South Florida.</h2>
               <p className="mt-4 text-base leading-relaxed text-muted-foreground">Complete solutions to help you protect, improve, and enjoy your home for years to come.</p>
             </ScrollReveal>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
@@ -309,7 +309,7 @@ export function Index() {
             <ScrollReveal>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Program Qualifications</h2>
               <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">Find out today whether your home meets the requirements for our financing program, and take the first step toward a stronger, longer-lasting, more energy-efficient property.</p>
-              <Button asChild size="lg" className="mt-8 h-auto min-h-12 whitespace-normal rounded-sm px-6 py-3 text-left font-bold"><a href="#contact">Click Here to Check If You Qualify <ArrowRight /></a></Button>
+              <div className="mt-8 max-w-2xl"><QualificationForm variant="compact" source="Program qualifications form" /></div>
             </ScrollReveal>
             <ScrollReveal index={1} className="flex justify-start lg:justify-end"><VideoCard /></ScrollReveal>
           </div>
@@ -319,10 +319,10 @@ export function Index() {
           <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16 lg:px-10">
             <ScrollReveal className="max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-warm">Flexible Options</p>
-              <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl">Financing for your next home improvement.</h2>
+              <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl">Upgrade now. Pay over time.</h2>
               <p className="mt-4 text-base leading-relaxed text-forest-foreground/85">Flexible financing options are available for qualified homeowners, making it easier to complete important improvements without the burden of a large upfront investment.</p>
             </ScrollReveal>
-            <ScrollReveal index={1}><Button asChild variant="inverse" size="lg" className="h-12 shrink-0 self-start rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Discuss Your Options <ArrowRight /></a></Button></ScrollReveal>
+            <ScrollReveal index={1} className="w-full lg:max-w-xl"><p className="mb-4 font-display text-lg font-bold">Find out in 30 seconds — no cost, no commitment.</p><QualificationForm variant="band" source="Financing form" /></ScrollReveal>
           </div>
         </section>
 
@@ -332,7 +332,7 @@ export function Index() {
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">Get in Touch</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Let’s talk about your home.</h2>
               <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">Whether you’re planning an upgrade or exploring your options, our team is ready to help you take the next step.</p>
-              <QualificationForm />
+              <div className="mt-8 max-w-xl"><QualificationForm id="qualify" source="Contact form" /></div>
             </ScrollReveal>
             <ScrollReveal index={1} className="border-t border-border lg:border-l lg:border-t-0 lg:pl-12">
               <div className="flex gap-5 border-b border-border py-7"><Phone className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Phone</h3><a href={`tel:${phone}`} className="mt-1 inline-block text-lg text-foreground hover:text-primary">(786) 606-4596</a></div></div>
