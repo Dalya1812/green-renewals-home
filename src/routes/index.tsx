@@ -46,15 +46,17 @@ function ScrollReveal({ children, index = 0, className = "" }: { children: React
   useEffect(() => {
     const element = ref.current;
     if (!element) return;
-    if (!('IntersectionObserver' in window)) { element.classList.add('is-visible'); return; }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    element.classList.add('motion-ready');
+    let frame = 0;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry?.isIntersecting) {
-        requestAnimationFrame(() => requestAnimationFrame(() => element.classList.add('is-visible')));
+        frame = requestAnimationFrame(() => element.classList.add('is-visible'));
         observer.disconnect();
       }
-    }, { threshold: 0.15, rootMargin: '0px 0px -12% 0px' });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
     observer.observe(element);
-    return () => observer.disconnect();
+    return () => { observer.disconnect(); cancelAnimationFrame(frame); };
   }, []);
 
   return <div ref={ref} className={`scroll-reveal reveal-delay-${index} ${className}`}>{children}</div>;
@@ -234,7 +236,7 @@ function Index() {
             </ScrollReveal>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {services.map((service, index) => (
-                <ScrollReveal key={service.title} index={index} className="h-full">
+                <ScrollReveal key={service.title} index={index} className="service-reveal h-full">
                 <article className="group h-full overflow-hidden rounded-sm border border-border bg-card transition-shadow hover:shadow-md">
                   <div className="aspect-[4/3] overflow-hidden"><img src={service.image} alt={service.title} width={1024} height={768} loading="lazy" className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.035]" /></div>
                   <div className="p-5">
