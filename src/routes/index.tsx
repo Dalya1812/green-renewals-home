@@ -61,6 +61,7 @@ const address = "9000 Sheridan St, Suite 104, Pembroke Pines, FL 33024";
 const mapUrl = "https://www.google.com/maps/dir/?api=1&destination=9000%20Sheridan%20St%2C%20Suite%20104%2C%20Pembroke%20Pines%2C%20FL%2033024";
 const instagramUrl = "https://www.instagram.com/green_renewals/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61594797155664";
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdekjpky";
 
 const services = [
   { title: "Impact Windows & Doors", image: windowsImage, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
@@ -138,15 +139,20 @@ function QualificationForm({ variant = "card", id, source = "General inquiry" }:
     if (leadPhone.replace(/\D/g, "").length < 10) { setError("Please enter a valid phone number."); return; }
     setError("");
     setStatus("submitting");
-    const { error: insertError } = await supabase.from("leads").insert({
-      name,
-      phone: leadPhone,
-      email: null,
-      service: source,
-      county: null,
-      message: null,
+
+    const formspree = fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      headers: { Accept: "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify({ name, phone: leadPhone, _subject: `New lead — ${source}`, source }),
     });
-    if (insertError) {
+
+    const database = supabase
+      .from("leads")
+      .insert({ name, phone: leadPhone, email: null, service: source, county: null, message: null })
+      .then(({ error }) => { if (error) console.warn("Lead not saved to database:", error.message); });
+
+    const [formspreeResult] = await Promise.all([formspree, database]);
+    if (!formspreeResult.ok) {
       setStatus("idle");
       setError("Something went wrong. Please call us instead at (786) 606-4596.");
       return;
