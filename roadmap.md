@@ -14,3 +14,4 @@
 - [x] Simplify Contact to one qualification button that opens a name-and-phone form.
 - [x] Update team and program copy, replace the video cover with the supplied image, remove service numbers, and reveal services and three benefits as they scroll into view.
 - [x] Add restrained institutional entrance animations: hero settle-in on load, section headings and columns easing up on scroll, and the green rule drawing out.
+- [x] Make scroll entrances more expressive like the reference site, with staggered benefit and service pop-ups while retaining the established formal design.
