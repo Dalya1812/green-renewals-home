@@ -18,4 +18,4 @@
 - Use IBM Plex Sans for both headings and body text; its understated institutional tone keeps the established page layout intact.
 - Keep a persistent mobile call action and use a Google Maps directions URL with the office as the destination so contact remains usable from anywhere on the page.
 - Instagram is green_renewals; Facebook is the business page at facebook.com/profile.php?id=61594797155664 (provided by the business, so never fall back to a page search).
-- Use one-time staggered scroll keyframes for benefits and services; keep content visible without JS or with reduced motion to protect access.
+- Use one-time staggered scroll entrances from varied directions for services; keep content visible without JS or with reduced motion. Serve optimized photos via CDN pointers and preload the first-screen photo so animation waits on no image download.
