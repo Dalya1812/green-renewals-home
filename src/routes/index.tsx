@@ -228,7 +228,7 @@ function Index() {
           </div>
         </div>
 
-        <section id="services" className="scroll-mt-24 py-20 sm:py-24">
+        <section id="services" className="scroll-mt-24 overflow-x-clip py-20 sm:py-24">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
             <ScrollReveal className="mb-10 max-w-2xl">
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">What We Do</p>
