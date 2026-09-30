@@ -94,7 +94,6 @@ function VideoCard() {
 }
 
 function QualificationForm() {
-  const [open, setOpen] = useState(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
   const [error, setError] = useState("");
 
@@ -137,10 +136,6 @@ function QualificationForm() {
             <p className="text-sm leading-relaxed text-muted-foreground">A member of our team will contact you shortly. If you prefer, you can also call us now at <a href={`tel:${phone}`} className="font-bold text-primary hover:text-forest">(786) 606-4596</a>.</p>
           </div>
         </div>
-      ) : !open ? (
-        <Button type="button" size="lg" onClick={() => setOpen(true)} className="h-12 rounded-sm px-6 font-bold">
-          Check If You Qualify <ArrowRight />
-        </Button>
       ) : (
         <form onSubmit={handleSubmit} noValidate className="rounded-sm border border-border bg-card p-6 shadow-sm">
           <h3 className="font-display text-lg font-bold text-forest">Check if you qualify</h3>
@@ -156,12 +151,9 @@ function QualificationForm() {
             </label>
           </div>
           {error && <p className="mt-3 text-sm font-semibold text-destructive">{error}</p>}
-          <div className="mt-5 flex flex-wrap items-center gap-3">
+          <div className="mt-5">
             <Button type="submit" size="lg" disabled={status === "submitting"} className="h-12 rounded-sm px-6 font-bold">
               {status === "submitting" ? "Sending…" : "Send My Details"} <ArrowRight />
-            </Button>
-            <Button type="button" variant="ghost" onClick={() => { setOpen(false); setError(""); }} className="h-12 rounded-sm px-4 font-semibold text-muted-foreground">
-              Cancel
             </Button>
           </div>
         </form>
