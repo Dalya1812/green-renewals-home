@@ -124,7 +124,8 @@ function VideoCard() {
 
 type FormVariant = "card" | "compact" | "band";
 
-function QualificationForm({ variant = "card", id, source = "General inquiry" }: { variant?: FormVariant; id?: string; source?: string }) {
+function QualificationForm({ variant = "card", id, source = "General inquiry", collapsible = false, triggerLabel = "Check If You Qualify" }: { variant?: FormVariant; id?: string; source?: string; collapsible?: boolean; triggerLabel?: string }) {
+  const [open, setOpen] = useState(!collapsible);
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
   const [error, setError] = useState("");
   const dark = variant === "band";
@@ -188,6 +189,23 @@ function QualificationForm({ variant = "card", id, source = "General inquiry" }:
   );
   const note = <p className={`mt-3 flex items-center gap-2 text-xs ${dark ? "text-forest-foreground/70" : "text-muted-foreground"}`}><ShieldCheck size={14} /> Free, no-obligation check. We never share your information.</p>;
   const errorLine = error && <p role="alert" className={`mt-3 text-sm font-semibold ${dark ? "text-warm" : "text-destructive"}`}>{error}</p>;
+  const heading = variant === "band" ? "Find out in 30 seconds — no cost, no commitment." : "Check if you qualify";
+  const subline = variant === "band"
+    ? "Share your name and phone number and our team will walk you through the options available for your property."
+    : "Two quick details — our team calls you back with your options.";
+
+  if (collapsible && !open) {
+    return (
+      <div id={id} className={`scroll-mt-24 rounded-sm border p-6 sm:p-7 ${dark ? "border-forest-foreground/25" : "border-border border-t-4 border-t-primary bg-card shadow-sm"}`}>
+        <h3 className={`font-display text-lg font-bold ${dark ? "" : "text-forest"}`}>{heading}</h3>
+        <p className={`mt-1 text-sm leading-relaxed ${dark ? "text-forest-foreground/85" : "text-muted-foreground"}`}>{subline}</p>
+        <Button type="button" size="lg" variant={dark ? "inverse" : "default"} onClick={() => setOpen(true)} className="mt-5 h-12 rounded-sm px-6 font-bold">
+          {triggerLabel} <ArrowRight />
+        </Button>
+        {note}
+      </div>
+    );
+  }
 
   if (variant === "card") {
     return (
@@ -203,7 +221,8 @@ function QualificationForm({ variant = "card", id, source = "General inquiry" }:
   }
 
   return (
-    <form id={id} onSubmit={handleSubmit} noValidate className={`scroll-mt-24 ${variant === "compact" ? "rounded-sm border border-border bg-mist p-5" : ""}`}>
+    <form id={id} onSubmit={handleSubmit} noValidate className={`scroll-mt-24 ${variant === "compact" ? "rounded-sm border border-border bg-mist p-5" : ""} ${variant === "band" ? "rounded-sm border border-forest-foreground/25 p-6" : ""}`}>
+      {variant === "band" && <p className="mb-4 font-display text-lg font-bold">Find out in 30 seconds — no cost, no commitment.</p>}
       <div className="grid items-end gap-3 sm:grid-cols-[1fr_1fr_auto]">{fields}{submit}</div>
       {errorLine}
       {note}
@@ -328,7 +347,7 @@ export function Index() {
               <h2 className="font-display text-3xl font-bold leading-tight sm:text-4xl">Upgrade now. Pay over time.</h2>
               <p className="mt-4 text-base leading-relaxed text-forest-foreground/85">Flexible financing options are available for qualified homeowners, making it easier to complete important improvements without the burden of a large upfront investment.</p>
             </ScrollReveal>
-            <ScrollReveal index={1} className="w-full lg:max-w-xl"><p className="mb-4 font-display text-lg font-bold">Find out in 30 seconds — no cost, no commitment.</p><QualificationForm variant="band" source="Financing form" /></ScrollReveal>
+            <ScrollReveal index={1} className="w-full lg:max-w-xl"><QualificationForm variant="band" collapsible triggerLabel="See My Options" source="Financing form" /></ScrollReveal>
           </div>
         </section>
 
@@ -338,13 +357,12 @@ export function Index() {
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">Get in Touch</p>
               <h2 className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">Let’s talk about your home.</h2>
               <p className="mt-5 max-w-lg text-base leading-relaxed text-muted-foreground">Whether you’re planning an upgrade or exploring your options, our team is ready to help you take the next step.</p>
-              <div className="mt-8 max-w-xl"><QualificationForm id="qualify" source="Contact form" /></div>
+              <div className="mt-8 max-w-xl"><QualificationForm id="qualify" collapsible triggerLabel="Check If You Qualify" source="Contact form" /></div>
             </ScrollReveal>
             <ScrollReveal index={1} className="border-t border-border lg:border-l lg:border-t-0 lg:pl-12">
               <div className="flex gap-5 border-b border-border py-7"><Phone className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Phone</h3><a href={`tel:${phone}`} className="mt-1 inline-block text-lg text-foreground hover:text-primary">(786) 606-4596</a></div></div>
               <div className="flex gap-5 border-b border-border py-7"><MapPin className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Office Address</h3><p className="mt-1 text-base text-foreground">{address}</p><a href={mapUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:text-forest">Get directions <ArrowRight size={15} /></a></div></div>
               <div className="flex gap-5 border-b border-border py-7"><MapPin className="mt-1 size-6 shrink-0 text-primary" /><div><h3 className="font-display text-base font-bold text-forest">Service Areas</h3><p className="mt-1 text-base text-foreground">Miami-Dade, Broward & West Palm Beach counties</p></div></div>
-              <div className="flex items-center gap-4 py-7"><span className="text-sm font-bold text-forest">Follow us</span><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Instagram"><a href={instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Instagram"><Instagram /></a></Button><Button asChild variant="outline" size="icon" className="size-11 rounded-sm" title="Facebook"><a href={facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Green Renewals on Facebook"><Facebook /></a></Button></div>
             </ScrollReveal>
           </div>
         </section>

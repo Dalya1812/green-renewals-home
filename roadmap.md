@@ -16,3 +16,4 @@
 - [x] Add restrained institutional entrance animations: hero settle-in on load, section headings and columns easing up on scroll, and the green rule drawing out.
 - [x] Make scroll entrances more expressive like the reference site, with staggered benefit and service pop-ups while retaining the established formal design.
 - [x] Alternate service-image entrance directions like the reference site and optimize photos for faster loading.
+- [x] Keep only the form beside the video open; the financing and contact forms expand on click, and social links stay only in the green footer.
