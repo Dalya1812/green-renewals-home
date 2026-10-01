@@ -124,7 +124,8 @@ function VideoCard() {
 
 type FormVariant = "card" | "compact" | "band";
 
-function QualificationForm({ variant = "card", id, source = "General inquiry" }: { variant?: FormVariant; id?: string; source?: string }) {
+function QualificationForm({ variant = "card", id, source = "General inquiry", collapsible = false, triggerLabel = "Check If You Qualify" }: { variant?: FormVariant; id?: string; source?: string; collapsible?: boolean; triggerLabel?: string }) {
+  const [open, setOpen] = useState(!collapsible);
   const [status, setStatus] = useState<"idle" | "submitting" | "done">("idle");
   const [error, setError] = useState("");
   const dark = variant === "band";
@@ -188,6 +189,23 @@ function QualificationForm({ variant = "card", id, source = "General inquiry" }:
   );
   const note = <p className={`mt-3 flex items-center gap-2 text-xs ${dark ? "text-forest-foreground/70" : "text-muted-foreground"}`}><ShieldCheck size={14} /> Free, no-obligation check. We never share your information.</p>;
   const errorLine = error && <p role="alert" className={`mt-3 text-sm font-semibold ${dark ? "text-warm" : "text-destructive"}`}>{error}</p>;
+  const heading = variant === "band" ? "Find out in 30 seconds — no cost, no commitment." : "Check if you qualify";
+  const subline = variant === "band"
+    ? "Share your name and phone number and our team will walk you through the options available for your property."
+    : "Two quick details — our team calls you back with your options.";
+
+  if (collapsible && !open && status !== "done") {
+    return (
+      <div id={id} className={`scroll-mt-24 rounded-sm border p-6 sm:p-7 ${dark ? "border-forest-foreground/25" : "border-border border-t-4 border-t-primary bg-card shadow-sm"}`}>
+        <h3 className={`font-display text-lg font-bold ${dark ? "" : "text-forest"}`}>{heading}</h3>
+        <p className={`mt-1 text-sm leading-relaxed ${dark ? "text-forest-foreground/85" : "text-muted-foreground"}`}>{subline}</p>
+        <Button type="button" size="lg" variant={dark ? "inverse" : "default"} onClick={() => setOpen(true)} className="mt-5 h-12 rounded-sm px-6 font-bold">
+          {triggerLabel} <ArrowRight />
+        </Button>
+        {note}
+      </div>
+    );
+  }
 
   if (variant === "card") {
     return (
@@ -203,7 +221,8 @@ function QualificationForm({ variant = "card", id, source = "General inquiry" }:
   }
 
   return (
-    <form id={id} onSubmit={handleSubmit} noValidate className={`scroll-mt-24 ${variant === "compact" ? "rounded-sm border border-border bg-mist p-5" : ""}`}>
+    <form id={id} onSubmit={handleSubmit} noValidate className={`scroll-mt-24 ${variant === "compact" ? "rounded-sm border border-border bg-mist p-5" : ""} ${variant === "band" ? "rounded-sm border border-forest-foreground/25 p-6" : ""}`}>
+      {variant === "band" && <p className="mb-4 font-display text-lg font-bold">Find out in 30 seconds — no cost, no commitment.</p>}
       <div className="grid items-end gap-3 sm:grid-cols-[1fr_1fr_auto]">{fields}{submit}</div>
       {errorLine}
       {note}
