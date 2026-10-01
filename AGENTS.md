@@ -19,3 +19,4 @@
 - Keep a persistent mobile call action and use a Google Maps directions URL with the office as the destination so contact remains usable from anywhere on the page.
 - Instagram is green_renewals; Facebook is the business page at facebook.com/profile.php?id=61594797155664 (provided by the business, so never fall back to a page search).
 - Use one-time staggered scroll entrances from varied directions for services; keep content visible without JS or with reduced motion. Serve optimized photos via CDN pointers and preload the first-screen photo so animation waits on no image download.
+- The GitHub Pages standalone entry lives in `standalone/index.html` (built by `vite.pages.config.ts`); never put an `index.html` at the project root, because it overrides the TanStack Start app on the published site and shows a blank page.
