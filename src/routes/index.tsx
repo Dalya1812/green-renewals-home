@@ -194,7 +194,7 @@ function QualificationForm({ variant = "card", id, source = "General inquiry", c
     ? "Share your name and phone number and our team will walk you through the options available for your property."
     : "Two quick details — our team calls you back with your options.";
 
-  if (collapsible && !open && status !== "done") {
+  if (collapsible && !open) {
     return (
       <div id={id} className={`scroll-mt-24 rounded-sm border p-6 sm:p-7 ${dark ? "border-forest-foreground/25" : "border-border border-t-4 border-t-primary bg-card shadow-sm"}`}>
         <h3 className={`font-display text-lg font-bold ${dark ? "" : "text-forest"}`}>{heading}</h3>
