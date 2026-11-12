@@ -42,7 +42,7 @@ export const Route = createFileRoute("/")({
         name: "Green Renewals",
         url: siteUrl,
         telephone: "+1-786-606-4596",
-        address: { "@type": "PostalAddress", streetAddress: "22 W Hallandale Beach Blvd, Suite A-106", addressLocality: "Hallandale Beach", addressRegion: "FL", postalCode: "33009", addressCountry: "US" },
+        address: { "@type": "PostalAddress", streetAddress: "22 W Hallandale Beach Blvd, Suite 106-A", addressLocality: "Hallandale Beach", addressRegion: "FL", postalCode: "33009", addressCountry: "US" },
         areaServed: ["Miami-Dade County, FL", "Broward County, FL", "Palm Beach County, FL"],
         sameAs: ["https://www.instagram.com/green_renewals/", "https://www.facebook.com/profile.php?id=61594797155664"],
         hasOfferCatalog: {
@@ -57,8 +57,8 @@ export const Route = createFileRoute("/")({
 });
 
 const phone = "+17866064596";
-const address = "22 W Hallandale Beach Blvd, Suite A-106, Hallandale Beach, FL 33009";
-const mapUrl = "https://www.google.com/maps/dir/?api=1&destination=22%20W%20Hallandale%20Beach%20Blvd%2C%20Suite%20A-106%2C%20Hallandale%20Beach%2C%20FL%2033009";
+const address = "22 W Hallandale Beach Blvd, Suite 106-A, Hallandale Beach, FL 33009";
+const mapUrl = "https://www.google.com/maps/dir/?api=1&destination=22%20W%20Hallandale%20Beach%20Blvd%2C%20Suite%20106-A%2C%20Hallandale%20Beach%2C%20FL%2033009";
 const instagramUrl = "https://www.instagram.com/green_renewals/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61594797155664";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdekjpky";
