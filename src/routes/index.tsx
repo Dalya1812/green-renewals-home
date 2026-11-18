@@ -14,7 +14,7 @@ import qualificationsImage from "@/assets/self-hosted/program-qualifications.png
 import { supabase } from "@/integrations/supabase/client";
 
 const seoTitle = "Impact Windows, Roofing & HVAC in South Florida | Green Renewals";
-const seoDescription = "Get impact windows & doors, a new roof, HVAC or insulation with flexible financing. Serving Miami-Dade, Broward & West Palm Beach. Check if you qualify in 30 seconds — free.";
+const seoDescription = "Hallandale Beach contractor for impact windows, roofing, HVAC & insulation with flexible financing. Serving Miami-Dade, Broward & West Palm Beach. Check if you qualify — free.";
 const siteUrl = "https://green-renewals-home.lovable.app/";
 
 export const Route = createFileRoute("/")({
