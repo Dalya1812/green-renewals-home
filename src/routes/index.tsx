@@ -237,7 +237,8 @@ export function Index() {
   return (
     <div id="top" className="min-h-screen bg-background pb-16 lg:pb-0">
       <div className="bg-forest text-forest-foreground">
-        <div className="mx-auto flex max-w-7xl items-center justify-center gap-3 px-5 py-2 text-xs font-medium sm:justify-end sm:px-8 lg:px-10">
+        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-1 px-5 py-2 text-xs font-medium sm:justify-between sm:px-8 lg:px-10">
+          <span className="inline-flex items-center gap-2 tracking-wide">Licensed Florida General Contractor · CGC1526484</span>
           <a href={`tel:${phone}`} className="inline-flex shrink-0 items-center gap-2 hover:underline"><Phone size={13} /> <span className="hidden sm:inline">Call us:</span> (786) 606-4596</a>
         </div>
       </div>
