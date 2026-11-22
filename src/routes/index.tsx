@@ -238,7 +238,7 @@ export function Index() {
     <div id="top" className="min-h-screen bg-background pb-16 lg:pb-0">
       <div className="bg-forest text-forest-foreground">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-center gap-x-4 gap-y-1 px-5 py-2 text-xs font-medium sm:justify-between sm:px-8 lg:px-10">
-          <span className="inline-flex items-center gap-2 tracking-wide">Licensed Florida General Contractor · CGC1526484</span>
+          <span className="inline-flex items-center gap-2 tracking-wide">Serving Miami-Dade, Broward & West Palm Beach</span>
           <a href={`tel:${phone}`} className="inline-flex shrink-0 items-center gap-2 hover:underline"><Phone size={13} /> <span className="hidden sm:inline">Call us:</span> (786) 606-4596</a>
         </div>
       </div>
@@ -272,6 +272,7 @@ export function Index() {
               <h1 id="hero-title" className="hero-enter hero-d1 font-display text-[39px] font-bold leading-[1.15] sm:text-[52px] lg:text-[58px]">Green Renewals</h1>
               <p className="hero-enter hero-d2 mt-4 font-display text-xl font-semibold leading-snug sm:text-[27px]">Upgrade Your Home.<br />Protect Your Investment.</p>
 <p className="hero-enter hero-d3 mt-5 max-w-[500px] text-base leading-relaxed text-forest-foreground/90 sm:text-lg">Quality home improvement solutions for the comfort, protection, and value of your South Florida home.</p>
+              <p className="hero-enter hero-d3 mt-4 inline-flex items-center gap-2 rounded-sm border border-forest-foreground/30 bg-forest-foreground/10 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-forest-foreground"><ShieldCheck size={14} className="text-warm" /> Licensed Florida General Contractor · CGC1526484</p>
               <p className="hero-enter hero-d3 mt-4 flex items-center gap-3 text-xs font-bold uppercase tracking-[0.18em] text-forest-foreground/80"><MapPin size={14} className="text-warm" /> Serving Miami-Dade, Broward & West Palm Beach</p>
               <div className="hero-enter hero-d4 mt-8 flex flex-wrap gap-3">
                 <Button asChild size="lg" className="h-12 rounded-sm px-6 font-bold"><a href={`tel:${phone}`}>Speak With Our Team <ArrowRight /></a></Button>
