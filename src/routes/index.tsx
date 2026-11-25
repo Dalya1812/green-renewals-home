@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowRight, Check, ChevronRight, Facebook, House, Instagram, MapPin, Menu, Phone, Play, ShieldCheck, X } from "lucide-react";
+import { ArrowRight, Check, ChevronRight, Facebook, House, Instagram, MapPin, Menu, Phone, Play, ShieldCheck, Star, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import homeImage from "@/assets/green-renewals-home.webp";
 import windowsImage from "@/assets/self-hosted/windows-optimized.webp";
@@ -327,6 +327,11 @@ export function Index() {
               <p>We specialize in roofing, impact windows and doors, HVAC systems, and insulation, providing homeowners with complete solutions designed to improve comfort, energy efficiency, protection, and the overall value of their property.</p>
               <p>From the initial consultation through project completion, our team is committed to making the process simple, transparent, and stress-free. We work with trusted professionals and quality materials while helping each homeowner understand the options available for their specific property and project.</p>
               <p>At Green Renewals, our goal is simple: professional service, quality work, clear communication, and results homeowners can feel confident about.</p>
+              <div className="pt-3">
+                <Button asChild variant="outline" size="lg" className="h-auto min-h-12 max-w-full rounded-sm px-5 py-3 font-bold">
+                  <a href={mapUrl} target="_blank" rel="noopener noreferrer" aria-label="See what our customers think of us on Google"><Star className="shrink-0" /><span className="whitespace-normal text-left">See what our customers think of us</span><ArrowRight className="shrink-0" /></a>
+                </Button>
+              </div>
             </ScrollReveal>
           </div>
         </section>
