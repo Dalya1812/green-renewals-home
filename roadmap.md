@@ -18,3 +18,4 @@
 - [x] Alternate service-image entrance directions like the reference site and optimize photos for faster loading.
 - [x] Keep only the form beside the video open; the financing and contact forms expand on click, and social links stay only in the green footer.
 - [x] Fix blank published site caused by a root index.html from the GitHub Pages build.
+- [x] Display two real positive Google reviews with original wording, author attribution, dates, and source links.

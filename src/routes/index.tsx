@@ -63,6 +63,26 @@ const instagramUrl = "https://www.instagram.com/green_renewals/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61594797155664";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdekjpky";
 
+// Editorial selection retrieved from the matching Google business profile on November 25, 2026.
+const customerReviews = [
+  {
+    author: "Ofek Azvelos",
+    date: "November 20, 2026",
+    dateTime: "2026-11-20",
+    text: "Amazing experience with Green Renewals! They installed impact windows and doors in my home, and everything came out beautiful! The team was professional, friendly, and made the whole process super easy. Couldn’t be happier!",
+    authorUrl: "https://www.google.com/maps/contrib/111813497543291897282/reviews",
+    url: "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xKR1gwOHlOVU5HTW1wcVZISkJaR1p4WVVSc1JrRRAB!2m1!1s0x88d9ad3cf2cf8e13:0x1595779b448bdf9e",
+  },
+  {
+    author: "Dalya William",
+    date: "November 25, 2026",
+    dateTime: "2026-11-25",
+    text: "Very recommend:) reliable and great price",
+    authorUrl: "https://www.google.com/maps/contrib/117958948342552706223/reviews",
+    url: "https://www.google.com/maps/reviews/data=!4m6!14m5!1m4!2m3!1sCi9DQUlRQUNvZENodHljRjlvT2xGSWEwcDVlRVJ5T1hGb2IwWlhlRUpLWldGRVptYxAB!2m1!1s0x88d9ad3cf2cf8e13:0x1595779b448bdf9e",
+  },
+];
+
 const services = [
   { title: "Impact Windows & Doors", image: windowsImage, description: "Help protect your home and enjoy greater peace of mind with quality impact-resistant windows and doors." },
   { title: "Roofing", image: roofingImage, description: "Dependable roofing solutions built to safeguard your home and stand up to South Florida weather." },
@@ -333,6 +353,36 @@ export function Index() {
                 </Button>
               </div>
             </ScrollReveal>
+          </div>
+        </section>
+
+        <section id="reviews" aria-labelledby="reviews-title" className="scroll-mt-24 border-b border-border py-16 sm:py-20">
+          <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+            <ScrollReveal className="mb-8">
+              <p className="mb-3 text-xs font-bold uppercase text-primary">Google Reviews</p>
+              <h2 id="reviews-title" className="font-display text-3xl font-bold leading-tight text-forest sm:text-4xl">What our customers think of us</h2>
+              <p className="mt-3 text-sm text-muted-foreground">Selected reviews from our Google business profile.</p>
+            </ScrollReveal>
+            <div className="grid gap-5 md:grid-cols-2">
+              {customerReviews.map((review, index) => (
+                <ScrollReveal key={review.author} index={index} className="h-full">
+                  <figure className="flex h-full flex-col rounded-sm border border-border bg-card p-6 sm:p-7">
+                    <div className="mb-5 flex gap-1 text-primary" role="img" aria-label="5 out of 5 stars">
+                      {Array.from({ length: 5 }, (_, star) => <Star key={star} size={17} fill="currentColor" aria-hidden="true" />)}
+                    </div>
+                    <blockquote className="flex-1 text-base leading-relaxed text-foreground">“{review.text}”</blockquote>
+                    <figcaption className="mt-6 border-t border-border pt-4">
+                      <a href={review.authorUrl} target="_blank" rel="noopener noreferrer" className="font-semibold text-forest hover:underline">{review.author}</a>
+                      <p className="mt-1 text-xs text-muted-foreground"><time dateTime={review.dateTime}>{review.date}</time> · Google</p>
+                      <a href={review.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-primary hover:underline" aria-label={`Read ${review.author}'s review on Google`}>Read on Google <ArrowRight size={14} /></a>
+                    </figcaption>
+                  </figure>
+                </ScrollReveal>
+              ))}
+            </div>
+            <Button asChild variant="outline" className="mt-7 h-auto min-h-11 whitespace-normal rounded-sm px-5 py-3 font-bold">
+              <a href={mapUrl} target="_blank" rel="noopener noreferrer">See all reviews on Google <ArrowRight className="shrink-0" /></a>
+            </Button>
           </div>
         </section>
 
