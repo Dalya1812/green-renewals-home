@@ -58,7 +58,7 @@ export const Route = createFileRoute("/")({
 
 const phone = "+17866064596";
 const address = "221 W Hallandale Beach Blvd, Suite 106-A, Hallandale Beach, FL 33009";
-const mapUrl = "https://www.google.com/maps/dir/?api=1&destination=221%20W%20Hallandale%20Beach%20Blvd%2C%20Suite%20106-A%2C%20Hallandale%20Beach%2C%20FL%2033009";
+const mapUrl = "https://share.google/NtbdwmYrtqwGghDwv";
 const instagramUrl = "https://www.instagram.com/green_renewals/";
 const facebookUrl = "https://www.facebook.com/profile.php?id=61594797155664";
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/mdekjpky";
